@@ -1,0 +1,179 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>OpenComp3d Documentation</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-07-06"><meta name="DC.source" content="Main.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>OpenComp3d Documentation</h1><!--introduction--><p>
+  OpenComp3d is a framework developed at Laplace laboratory to perform
+  automatic design of power electronics
+<h2>Installation guide</h2>
+<a  href="html/InstallationInstructions.html"> Installation Instructions </a>
+<br></br>
+<h2>General overview of OpenComp3d</h2>
+<p>OpenComp3d is an environnment where all the physical components that can
+construct a power converter are modelled (magnetic elements, capacitors,
+heat sinks...). All this components are described using a <b>direct
+modelling</b> approach, that is, using their physical dimensions,
+materials and shape. In this section, the working principle alongside
+with basic examples of utilization are presented.</p>
+  <a  href="html/GeneralOverView.html"> More information about OpenComp3d basics </a>
+<br></br>
+<h2>OpenComp3d Component Library</h2>
+<p> In this section, the reader can have a deep understanding of the way
+the different Comp3d components are used.</p>
+  <a  href="html/OpenComp3dLibrary.html"> Component Library Documentation </a>
+<br></br>
+<h2>Documentation about OOTEE usage</h2>
+Electrical models of OpenComp3d components are implemented with the formalism of a software named "Ootee".
+Ootee is a Matlab package which provides a solver to carry out high speed simulation for
+(pre)design purpose. The main idea is making easier handling and combination of
+models, in order to be able to modify system topology and properties very quickly.
+Unfortunately, Ootee is not available under free license and the startup
+<a href="https://powerdesign.tech/contact/"> Power Design Technologies </a>
+should be contacted to get a license.
+<br></br>
+<h2>How to define an optimization problem</h2>
+<p>The framework has a series of implemented functionalities to help in
+the optimal design of power converters. In this section, the working principle
+of the optimization process and the basics of the code to perform an optimization
+are shown</p>
+<a href="html/SetOptimizationProblem.html"> Optimization Problem </a>
+<br></br>
+<h2>Optimization examples</h2>
+<p>Some particular examples of usage for the Comp3d library.</p>
+<a href="html/OptimizationExamplesList.html"> Optimization Examples </a>
+<br></br>
+<h2>Sweeping analysis</h2>
+<p>A specific tool to look sensibility of the models to the different
+inputs or several parameters, can be used as well to look the
+variation of the optimal result when a parameter is changed.</p>
+<a href="html/SweepingAnalysis.html"> Sweeping Analysis documentation </a>
+<br></br>
+<p> Copyright &copy 2017, LAPLACE, Université de Toulouse, CNRS, INPT, UPS,
+France.
+This software is released under a free software license. A copy of this
+license is available here: https://github.com/Laplace-cs/OpenComp3d.
+</p>
+</p><!--/introduction--><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% OpenComp3d Documentation
+% <html>
+%   OpenComp3d is a framework developed at Laplace laboratory to perform
+%   automatic design of power electronics
+% <h2>Installation guide</h2>
+% <a  href="html/InstallationInstructions.html"> Installation Instructions </a>
+% <br></br>
+% <h2>General overview of OpenComp3d</h2>
+% <p>OpenComp3d is an environnment where all the physical components that can
+% construct a power converter are modelled (magnetic elements, capacitors,
+% heat sinks...). All this components are described using a <b>direct
+% modelling</b> approach, that is, using their physical dimensions,
+% materials and shape. In this section, the working principle alongside
+% with basic examples of utilization are presented.</p>
+%   <a  href="html/GeneralOverView.html"> More information about OpenComp3d basics </a>
+% <br></br>
+% <h2>OpenComp3d Component Library</h2>
+% <p> In this section, the reader can have a deep understanding of the way
+% the different Comp3d components are used.</p>
+%   <a  href="html/OpenComp3dLibrary.html"> Component Library Documentation </a>
+% <br></br>
+% <h2>Documentation about OOTEE usage</h2>
+% Electrical models of OpenComp3d components are implemented with the formalism of a software named "Ootee".
+% Ootee is a Matlab package which provides a solver to carry out high speed simulation for
+% (pre)design purpose. The main idea is making easier handling and combination of
+% models, in order to be able to modify system topology and properties very quickly.
+% Unfortunately, Ootee is not available under free license and the startup
+% <a href="https://powerdesign.tech/contact/"> Power Design Technologies </a>
+% should be contacted to get a license.
+% <br></br>
+% <h2>How to define an optimization problem</h2>
+% <p>The framework has a series of implemented functionalities to help in
+% the optimal design of power converters. In this section, the working principle 
+% of the optimization process and the basics of the code to perform an optimization
+% are shown</p>
+% <a href="html/SetOptimizationProblem.html"> Optimization Problem </a>
+% <br></br>
+% <h2>Optimization examples</h2>
+% <p>Some particular examples of usage for the Comp3d library.</p>
+% <a href="html/OptimizationExamplesList.html"> Optimization Examples </a>
+% <br></br>
+% <h2>Sweeping analysis</h2>
+% <p>A specific tool to look sensibility of the models to the different
+% inputs or several parameters, can be used as well to look the
+% variation of the optimal result when a parameter is changed.</p>
+% <a href="html/SweepingAnalysis.html"> Sweeping Analysis documentation </a>
+% <br></br>
+% <p> Copyright &copy 2017, LAPLACE, Université de Toulouse, CNRS, INPT, UPS,
+% France.
+% This software is released under a free software license. A copy of this
+% license is available here: https://github.com/Laplace-cs/OpenComp3d.
+% </p>
+% </html>
+%%
+% 
+
+##### SOURCE END #####
+--></body></html>

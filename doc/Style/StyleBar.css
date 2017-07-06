@@ -1,0 +1,38 @@
+#navlu {
+    list-style-type: none;
+    margin-left:0%
+    margin: 0;
+    padding: 0;
+    width: 15%;
+    background-color: #f1f1f1;
+    height: 100%; /* Full height */
+    position: fixed; /* Make it stick, even on scroll */
+    overflow: auto; /* Enable scrolling if the sidenav has too much content */
+}
+#navli #nava {
+    display: block;
+    color: #000;
+    padding: 8px 18px;
+    text-decoration: none;
+}
+#navli2 {
+    margin-left:100%
+    display: block;
+    color: #000;
+    padding: 10px 18px;
+    text-decoration: none;
+     background-color: #4CAF50;
+    color: white;
+}
+#navli #nava.active {
+    background-color: #4CAF50;
+    color: white;
+}
+#navli #nava:hover:not(.active) {
+    background-color: #555;
+    padding: 8px 16px;
+    color: white;
+}
+
+
+

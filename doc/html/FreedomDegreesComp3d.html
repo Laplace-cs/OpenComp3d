@@ -1,0 +1,306 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Freedom Degrees Comp3d</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-07-05"><meta name="DC.source" content="FreedomDegreesComp3d.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Freedom Degrees Comp3d</h1><p>
+<p>In the OpenComp3d optimization framework, the optimization variables
+are the physical dimensions of the different components. However, the
+user can choose among all the different dimensions for the optimization
+to choose. </p>
+<h2>Freedom degrees usage</h2>
+<p> The freedom degrees of each component are stored under the property
+<i>freedomDegrees</i>, for example:<p>
+</p><pre class="codeinput">myInd = Comp3d.InductorCustomEI;
+myInd.freedomDegrees.writeText;
+</pre><pre class="codeoutput">Freedom Degrees are
+------------------------------
+        nameFields           lB        x0       uB      unit     status     relation
+    ___________________    ______    ______    _____    _____    _______    ________
+
+    legWidth                0.005      0.01      0.1    meter    free       -       
+    legThickness             0.01      0.02      0.1    meter    free       -       
+    airGap                  1e-06    0.0003    0.003    meter    free       -       
+    windingCoreDistance       NaN    0.0006      NaN    meter    setToX0    -       
+    interTurnSpace            NaN    0.0001      NaN    meter    setToX0    -       
+    nTurns                      2         8       40    turn     free       -       
+    conductorWidth         0.0001     0.001    0.002    meter    free       -       
+    conductorHeight         0.007      0.03     0.06    meter    free       -       
+
+</pre><p>
+<p>As shown, the freedom degrees have different parameters:</p>
+<ul>
+  <li>nameFiels: name of the fields</li>
+  <li>lB: Lower bound of each freedom degree</li>
+  <li>x0: Starting point for the optimization</li>
+  <li>uB: Upper bound of each freedom degree</li>
+  <li>unit: unit of the freedom degree</li>
+  <li>status: this field can take three different values
+          <ul>
+              <li>free: the parameter is taken into account in the
+              optimization problem and will vary between lB and uB.</li>
+              <li>setToX0: the parameter is fixed at an specific value
+              and will not change during the optimization.</li>
+              <li>homotetic: the variable is proportional to other
+              optimization variable. The relationship is stated in the
+              field "width".</li>
+          </ul></li>
+  <li>with: specifies the relationship between the variables when the
+  status parameter is set to "homothetic"</li>
+</ul>
+<p>To change one of these parameters use the command setField. Ex: let us
+modify the x0 field of legWidth to 0.02 and the fix the value of the
+airgap.</p>
+</p><pre class="codeinput">myInd.freedomDegrees.setField(<span class="string">'name'</span>,<span class="string">'legWidth'</span>,<span class="string">'x0'</span>,0.02);
+myInd.freedomDegrees.setField(<span class="string">'name'</span>,<span class="string">'airGap'</span>,<span class="string">'status'</span>,<span class="string">'setToX0'</span>);
+myInd.freedomDegrees.writeText;
+</pre><pre class="codeoutput error">No appropriate method, property, or field 'setField' for class 'Comp3d.FreedomDegrees'.
+
+Error in FreedomDegreesComp3d (line 40)
+myInd.freedomDegrees.setField('name','legWidth','x0',0.02);
+</pre><p>
+<p><b>IMPORTANT:</b> the dimensions of the component and the x0 starting
+point are not linked, that is, their values can be different</p>
+<table>
+<tr><td>
+</p><pre class="codeinput">myInd.dimensions
+</pre><p>
+</td><td>
+</p><pre class="codeinput">myInd.freedomDegrees.writeText;
+</pre><p>
+</td></tr></table>
+<br></br>
+<p>In this example the value of the dimension legWidth(0.01) is different
+from the x0 value of legWidth(0.02). If the user wants to set the current
+dimensions of the component as the x0 point for the optimization he must use
+the method <i>setPointAsInitialOpti</i>. Ex.</p>
+</p><pre class="codeinput">myInd.setPointAsInitialOpti;
+</pre><p>
+<table><tr><td>
+</p><pre class="codeinput">myInd.dimensions
+</pre><p>
+</td><td>
+</p><pre class="codeinput">myInd.freedomDegrees.writeText;
+</pre><p>
+</td></tr></table>
+<p>The x0 point has taken the values of the component dimensions (Ex:
+equal legWidth parameter</p>
+</p><p>
+<h2>Setting the freedom degrees using an interface</h2>
+<p>The components have an integrated method to define the freedom degrees
+using an interface. The command is <i>variable</i>.freeedomDegrees.GUI</p>
+</p><pre class="codeinput">myInd.freedomDegrees.GUI;
+</pre><p>
+<p>In this interface the user can manually define the optimization
+variables</p>
+</p><p>
+<h2>Save freedom degrees</h2>
+<p>A freedom degrees configuration can be stored for future use, the
+command to save the freedom degrees is <i>variable
+name</i>.freedomDegrees.saveText(<i>file name</i>).</p>
+</p><pre class="codeinput">myInd.freedomDegrees.setField(<span class="string">'name'</span>,<span class="string">'legWidth'</span>,<span class="string">'x0'</span>,0.02);
+myInd.freedomDegrees.setField(<span class="string">'name'</span>,<span class="string">'airGap'</span>,<span class="string">'status'</span>,<span class="string">'setToX0'</span>);
+myInd.freedomDegrees.setField(<span class="string">'name'</span>,<span class="string">'legThickness'</span>,<span class="string">'x0'</span>,0.001);
+myInd.freedomDegrees.saveText(<span class="string">'example.txt'</span>);
+</pre><p>
+<h2>Load freedom degrees</h2>
+<p>A freedom degrees configuration can be loaded into a component to
+launch the optimization. The instruction is <i>variable
+name</i>.freedomDegrees.loadText(<i>file name</i>)</p>
+</p><pre class="codeinput">myInd2 = Comp3d.InductorCustomEI;
+myInd2.freedomDegrees.writeText;
+</pre><p>
+<p>If we load the file</p>
+</p><pre class="codeinput">myInd2.freedomDegrees.loadText(<span class="string">'example.txt'</span>);
+myInd2.freedomDegrees.writeText;
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Freedom Degrees Comp3d
+% <html>
+% <p>In the OpenComp3d optimization framework, the optimization variables
+% are the physical dimensions of the different components. However, the
+% user can choose among all the different dimensions for the optimization
+% to choose. </p>
+% <h2>Freedom degrees usage</h2>
+% <p> The freedom degrees of each component are stored under the property
+% <i>freedomDegrees</i>, for example:<p>
+% </html>
+myInd = Comp3d.InductorCustomEI;
+myInd.freedomDegrees.writeText;
+
+%%
+% <html>
+% <p>As shown, the freedom degrees have different parameters:</p>
+% <ul>
+%   <li>nameFiels: name of the fields</li>
+%   <li>lB: Lower bound of each freedom degree</li>
+%   <li>x0: Starting point for the optimization</li>
+%   <li>uB: Upper bound of each freedom degree</li>
+%   <li>unit: unit of the freedom degree</li>
+%   <li>status: this field can take three different values
+%           <ul>
+%               <li>free: the parameter is taken into account in the
+%               optimization problem and will vary between lB and uB.</li>
+%               <li>setToX0: the parameter is fixed at an specific value
+%               and will not change during the optimization.</li>
+%               <li>homotetic: the variable is proportional to other
+%               optimization variable. The relationship is stated in the
+%               field "width".</li>
+%           </ul></li>
+%   <li>with: specifies the relationship between the variables when the
+%   status parameter is set to "homothetic"</li>
+% </ul>
+% <p>To change one of these parameters use the command setField. Ex: let us
+% modify the x0 field of legWidth to 0.02 and the fix the value of the
+% airgap.</p>
+% </html>
+myInd.freedomDegrees.setField('name','legWidth','x0',0.02);
+myInd.freedomDegrees.setField('name','airGap','status','setToX0');
+myInd.freedomDegrees.writeText;
+
+%%
+% <html>
+% <p><b>IMPORTANT:</b> the dimensions of the component and the x0 starting
+% point are not linked, that is, their values can be different</p>
+% <table>
+% <tr><td>
+% </html>
+myInd.dimensions
+%%
+% <html>
+% </td><td>
+% </html>
+myInd.freedomDegrees.writeText;
+%%
+% <html>
+% </td></tr></table>
+% <br></br>
+% <p>In this example the value of the dimension legWidth(0.01) is different 
+% from the x0 value of legWidth(0.02). If the user wants to set the current
+% dimensions of the component as the x0 point for the optimization he must use
+% the method <i>setPointAsInitialOpti</i>. Ex.</p>
+% </html>
+myInd.setPointAsInitialOpti;
+%%
+% <html>
+% <table><tr><td>
+% </html>
+myInd.dimensions
+%%
+% <html>
+% </td><td>
+% </html>
+myInd.freedomDegrees.writeText;
+%%
+% <html>
+% </td></tr></table>
+% <p>The x0 point has taken the values of the component dimensions (Ex:
+% equal legWidth parameter</p>
+% </html>
+
+%%
+% <html>
+% <h2>Setting the freedom degrees using an interface</h2>
+% <p>The components have an integrated method to define the freedom degrees 
+% using an interface. The command is <i>variable</i>.freeedomDegrees.GUI</p>
+% </html>
+myInd.freedomDegrees.GUI;
+%%
+% <html>
+% <p>In this interface the user can manually define the optimization
+% variables</p>
+% </html>
+
+%%
+% <html>
+% <h2>Save freedom degrees</h2>
+% <p>A freedom degrees configuration can be stored for future use, the
+% command to save the freedom degrees is <i>variable
+% name</i>.freedomDegrees.saveText(<i>file name</i>).</p>
+% </html>
+myInd.freedomDegrees.setField('name','legWidth','x0',0.02);
+myInd.freedomDegrees.setField('name','airGap','status','setToX0');
+myInd.freedomDegrees.setField('name','legThickness','x0',0.001);
+myInd.freedomDegrees.saveText('example.txt');
+
+%%
+% <html>
+% <h2>Load freedom degrees</h2>
+% <p>A freedom degrees configuration can be loaded into a component to
+% launch the optimization. The instruction is <i>variable
+% name</i>.freedomDegrees.loadText(<i>file name</i>)</p>
+% </html>
+myInd2 = Comp3d.InductorCustomEI;
+myInd2.freedomDegrees.writeText;
+%%
+% <html>
+% <p>If we load the file</p>
+% </html>
+myInd2.freedomDegrees.loadText('example.txt');
+myInd2.freedomDegrees.writeText;
+
+##### SOURCE END #####
+--></body></html>

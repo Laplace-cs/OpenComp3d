@@ -1,0 +1,206 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>FreedomDegrees class</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-02-28"><meta name="DC.source" content="FreedomDegrees.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>FreedomDegrees class</h1><p>
+<h2>Introduction</h2>
+<p>FreedomDegrees class is an association of FreedomDegreeUnit classes,
+it containts all the methods in order to manage the whole association as
+unique entity.</p>
+<h2>FreedomDegrees class in Comp3d.Element</h2>
+<p>For example, it is clear that each Comp3d.Element has several freedom
+degrees and that it is easier if the instruction related to each freedom
+degree are grouped.</p>
+<p>To define the freedom degrees of a Comp3d.Element a table must be
+loaded with all the information. The fields that each row must contain
+are the following.</p>
+<table>
+<tr>
+  <th>Name</th>
+  <th>lower bound</th>
+  <th>starting point</th>
+  <th>upper bound</th>
+  <th>status</th>
+  <th>relation</th>
+</tr></table>
+<p></p>
+<p>Once the table has been defined it is loaded into the freedomDegrees
+class using the following instruction:
+<i>obj.createFreedomDegreesFromTable(object,table)</i> where "object" is
+the comp3d object to whom all the freedom degrees are related and table
+is the description table of the freedom degrees.</p>
+<p>For example, let us consider the implementation in
+Comp3d.InductorCustomEI. The freedom degrees are defined as follows:</p>
+</p><pre class="codeinput">  freedomDegreesTable = [ <span class="keyword">...</span>
+                {<span class="string">'legWidth'</span>},             {<span class="string">'meter'</span>},    5e-3,  10e-3,   1e-1,   <span class="string">'free'</span>,     {[]}; <span class="keyword">...</span><span class="comment"> % legWidth (m)</span>
+                {<span class="string">'legThickness'</span>},         {<span class="string">'meter'</span>},   10e-3,  20e-3,   1e-1,   <span class="string">'free'</span>,     {[]}; <span class="keyword">...</span><span class="comment"> % legThickness (m)</span>
+                {<span class="string">'airGap'</span>},               {<span class="string">'meter'</span>},    1e-6, 0.3e-3,   3e-3,   <span class="string">'free'</span>,     {[]}; <span class="keyword">...</span><span class="comment"> % airGap (m)</span>
+                {<span class="string">'windingCoreDistance'</span>},  {<span class="string">'meter'</span>},    1e-4, 0.6e-3,   1e-2,   <span class="string">'setToX0'</span>,  {[]}; <span class="keyword">...</span><span class="comment"> % windingCoreDistance (m)</span>
+                {<span class="string">'interTurnSpace'</span>},       {<span class="string">'meter'</span>},    5e-5, 0.1e-3,   2e-4,   <span class="string">'setToX0'</span>,  {[]}; <span class="keyword">...</span><span class="comment"> % interTurnSpace (m)</span>
+                {<span class="string">'nTurns'</span>},               {<span class="string">'turn'</span>},        2,      8,     40,   <span class="string">'free'</span>,     {[]};  <span class="keyword">...</span><span class="comment"> % number of Turns (n)</span>
+                {<span class="string">'conductorWidth'</span>},       {<span class="string">'meter'</span>},  0.1e-3,	1e-3,  2e-3,   	<span class="string">'free'</span>,     {[]}; <span class="keyword">...</span><span class="comment"> % conductorWidth (m)</span>
+                {<span class="string">'conductorHeight'</span>},      {<span class="string">'meter'</span>},    7e-3,  30e-3, 60e-3,    <span class="string">'free'</span>,     {[]}; <span class="keyword">...</span><span class="comment"> % conductorHeight (m)</span>
+                ];
+</pre><p>
+<p>Then they are loaded into the component with the following command
+<i>obj.freedomDegrees_.createFreedomDegreesFromTable( obj,
+freedomDegrees);</i> where obj.freedomDegrees_ is by default a
+Comp3d.FreedomDegreesClass</p>
+<h2>FreedomDegreesClass in Comp3d.Composite</h2>
+<p>A Comp3d.Composite is an association of a Comp3d.Elements and
+therefore the freedomDegrees of a Comp3d.Composite can be considered as
+the association of the freedomDegrees of each Comp3d.Element. This
+association is merely an association of the freedomDegreesUnit classes
+and we are creating a sort of pointer at each encapsulation of the
+material</p>
+<p>This property is particularly interesting for the optimization as we
+are creating a sort of "link" or "path" between the mathematical problem
+and the objects themselves</p>
+<p>The association and dissociation of the freedomDegrees is hidden for
+the normal user as it is implied in the method <i>addComp3d</i> of the
+Comp3d.Composite class. The specific methods to perform these operations
+are <i>attachFreedomDegrees</i> and <i>detachFreedomDegrees</i>.</p>
+<h2>Changing the freedom degrees</h2>
+<h2>Loading and saving the freedom degrees</h2>
+<p>The configuration of the freedom degrees can be saved to a .txt and
+afterwards loaded. The instruction to save the freedom degree
+configuration is performed through the method
+<i>saveFreedomDegrees</i>.</p>
+</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% FreedomDegrees class
+%
+% <html>
+% <h2>Introduction</h2>
+% <p>FreedomDegrees class is an association of FreedomDegreeUnit classes,
+% it containts all the methods in order to manage the whole association as
+% unique entity.</p>
+% <h2>FreedomDegrees class in Comp3d.Element</h2>
+% <p>For example, it is clear that each Comp3d.Element has several freedom 
+% degrees and that it is easier if the instruction related to each freedom
+% degree are grouped.</p>
+% <p>To define the freedom degrees of a Comp3d.Element a table must be
+% loaded with all the information. The fields that each row must contain
+% are the following.</p>
+% <table>
+% <tr>
+%   <th>Name</th>
+%   <th>lower bound</th>
+%   <th>starting point</th>
+%   <th>upper bound</th>
+%   <th>status</th>
+%   <th>relation</th>
+% </tr></table>
+% <p></p>
+% <p>Once the table has been defined it is loaded into the freedomDegrees
+% class using the following instruction:
+% <i>obj.createFreedomDegreesFromTable(object,table)</i> where "object" is
+% the comp3d object to whom all the freedom degrees are related and table
+% is the description table of the freedom degrees.</p>
+% <p>For example, let us consider the implementation in
+% Comp3d.InductorCustomEI. The freedom degrees are defined as follows:</p>
+% </html>
+  freedomDegreesTable = [ ...
+                {'legWidth'},             {'meter'},    5e-3,  10e-3,   1e-1,   'free',     {[]}; ... % legWidth (m)
+                {'legThickness'},         {'meter'},   10e-3,  20e-3,   1e-1,   'free',     {[]}; ... % legThickness (m)
+                {'airGap'},               {'meter'},    1e-6, 0.3e-3,   3e-3,   'free',     {[]}; ... % airGap (m)
+                {'windingCoreDistance'},  {'meter'},    1e-4, 0.6e-3,   1e-2,   'setToX0',  {[]}; ... % windingCoreDistance (m)
+                {'interTurnSpace'},       {'meter'},    5e-5, 0.1e-3,   2e-4,   'setToX0',  {[]}; ... % interTurnSpace (m)
+                {'nTurns'},               {'turn'},        2,      8,     40,   'free',     {[]};  ... % number of Turns (n)
+                {'conductorWidth'},       {'meter'},  0.1e-3,	1e-3,  2e-3,   	'free',     {[]}; ... % conductorWidth (m)
+                {'conductorHeight'},      {'meter'},    7e-3,  30e-3, 60e-3,    'free',     {[]}; ... % conductorHeight (m)
+                ];
+ %% 
+ % <html>
+ % <p>Then they are loaded into the component with the following command
+ % <i>obj.freedomDegrees_.createFreedomDegreesFromTable( obj,
+ % freedomDegrees);</i> where obj.freedomDegrees_ is by default a
+ % Comp3d.FreedomDegreesClass</p>
+ % <h2>FreedomDegreesClass in Comp3d.Composite</h2>
+ % <p>A Comp3d.Composite is an association of a Comp3d.Elements and
+ % therefore the freedomDegrees of a Comp3d.Composite can be considered as
+ % the association of the freedomDegrees of each Comp3d.Element. This
+ % association is merely an association of the freedomDegreesUnit classes
+ % and we are creating a sort of pointer at each encapsulation of the
+ % material</p>
+ % <p>This property is particularly interesting for the optimization as we
+ % are creating a sort of "link" or "path" between the mathematical problem
+ % and the objects themselves</p>
+ % <p>The association and dissociation of the freedomDegrees is hidden for
+ % the normal user as it is implied in the method <i>addComp3d</i> of the 
+ % Comp3d.Composite class. The specific methods to perform these operations
+ % are <i>attachFreedomDegrees</i> and <i>detachFreedomDegrees</i>.</p>
+ % <h2>Changing the freedom degrees</h2>
+ % <h2>Loading and saving the freedom degrees</h2>
+ % <p>The configuration of the freedom degrees can be saved to a .txt and
+ % afterwards loaded. The instruction to save the freedom degree
+ % configuration is performed through the method
+ % <i>saveFreedomDegrees</i>.</p>
+ % </html>
+            
+##### SOURCE END #####
+--></body></html>

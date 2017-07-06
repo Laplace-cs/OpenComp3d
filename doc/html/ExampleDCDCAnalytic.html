@@ -1,0 +1,479 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Example DC-DC Analytic</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-07-05"><meta name="DC.source" content="ExampleDCDCAnalytic.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Example DC-DC Analytic</h1><!--introduction--><p>
+<h2>Problem description </h2>
+<p>The following problem addresses the optimization of an output inductor in
+a DC-DC buck converter as shown in the figure below. This time however,
+the excitations of the inductors will be determined by an analytical
+waveform previously known or will be calculated using an analytical
+calculation.</p>
+  <img src="../Sources/Images/BuckConverter.png" alt="Optimization Icon"
+  style="width:70%"; display="block"; margin="auto"> </img>
+<h2> Optimization using an analytical waveform</h2>
+<p>In the previous system, let us suppose we want to design an inductor
+of 1.3mH. By analytical approximations of a classical DC-DC converter, we
+know that the low voltage DC current is and the current ripple is
+determined by the following equation:</p
+</p><!--/introduction--><p><img src="ExampleDCDCAnalytic_eq14422665859652014060.png" alt="$$\Delta I = \frac{E \cdot \alpha \cdot (1 - \alpha)}{f_{sw} \cdot L}$$" style="width:130px;height:35px;"></p><p>
+with the following parameters:
+<ul>
+  <li> E : High DC voltage </li>
+  <li> &alpha; : transformation ratio </li>
+  <li> f<sub>sw</sub> : the switching frequency </li>
+  <li> L : the inductor value </li>
+</ul>
+<p>The waveform is the following one</p>
+</p><pre class="codeinput">Idc = 5;
+deltaI = 1;
+fSw = 20e3;
+timeSignal = linspace(0,1/fSw,1000);
+valueSignal = Idc + deltaI * Signal.Triangle(2 * pi * fSw * timeSignal);
+plot(timeSignal,valueSignal);
+</pre><img vspace="5" hspace="5" src="ExampleDCDCAnalytic_01.png" style="width:560px;height:420px;" alt=""> <p>
+<p> The voltage at the terminals can be approximated to a square
+waveform</p>
+</p><pre class="codeinput">voltageSignal = 50*square(2*pi*fSw*timeSignal,50);
+plot(timeSignal,voltageSignal);
+</pre><img vspace="5" hspace="5" src="ExampleDCDCAnalytic_02.png" style="width:560px;height:420px;" alt=""> <p>
+<p>The inductor and the problem is then created, in this case we will use
+the InductorCustomEI class, as no external solver is used, the record property
+is set to "false"</p>
+</p><pre class="codeinput">myOptProblem = OptimProblem.Optimizer;
+myInductor = Comp3d.InductorCustomEI(<span class="string">'record'</span>,false);
+myOptProblem.addComp3d(myInductor);
+</pre><p>
+<p>The inductor constraint value is set to 1.3mH as it is the valued we
+will have in the optimization process and the air temperature is set at 30</p>
+</p><pre class="codeinput">myInductor.constraints.Leq = 1.3e-3;
+myInductor.excitations.thermal.tAir = 30;
+</pre><p>
+<p>Then the excitations of the inductor are added analytically/p>
+</p><pre class="codeinput">myInductor.setExcitations(<span class="string">'time'</span>,timeSignal,<span class="string">'current'</span>,valueSignal,<span class="string">'voltage'</span>,voltageSignal);
+myInductor.drawExcitations;
+</pre><img vspace="5" hspace="5" src="ExampleDCDCAnalytic_03.png" style="width:560px;height:420px;" alt=""> <p>
+<p>The optimization is launched, in this case, the objective function is the mass and the
+MATLAB fmincon function is used</p>
+</p><pre class="codeinput">myOptProblem.criteria = {<span class="string">'mass'</span>};
+myOptProblem.optimAlgoType = <span class="string">'GradientDescent'</span>;
+myOptProblem.optimAlgo.options.Display = <span class="string">'final'</span>;
+myOptProblem.solveOptimizationProblem;
+</pre><pre class="codeoutput">
+Converged to an infeasible point.
+
+fmincon stopped because the size of the current step is less than
+the selected value of the step size tolerance but constraints are not
+satisfied to within the selected value of the constraint tolerance.
+
+
+
+Unsuccessful optimization. Exit flag = -2. No feasible point found.
+</pre><img vspace="5" hspace="5" src="ExampleDCDCAnalytic_04.png" style="width:560px;height:420px;" alt=""> <p>
+<p>The optimal solutions are displayed and validated</p>
+</p><pre class="codeinput">myInductor.displayInformation;
+myInductor.drawComponent;
+myInductor.validateFEMM;
+</pre><pre class="codeoutput">
+====================================================
+Information of  [Comp3d.InductorCustomEI]
+----------------------------------------------------
+Shape
+Dimensions
+                      legWidth: 0.01008
+                  legThickness: 0.02021
+                        airGap: 0.000277
+           windingCoreDistance: 0.0006
+                interTurnSpace: 0.0001
+                        nTurns:  8.307
+                conductorWidth: 0.0009774
+               conductorHeight: 0.02942
+----------------------------------------------------
+Materials
+             electricConductor: Copper
+            electricInsulation: UPETS
+                  magneticCore: 3C90 TM(25-200kHz)
+----------------------------------------------------
+Geometric Data
+          Manufacturing Volume:   0.12 l
+                        Weight: 0.4957 Kg
+----------------------------------------------------
+Cost Data
+                         Total: $   0.00
+----------------------------------------------------
+Optimization Constraints
+                temperatureMax:     80
+                      BsatRate:   0.95
+                           Leq: 0.0013
+----------------------------------------------------
+Electric Parameters
+                    Inductance: 5.858e-05 H
+                 DC resistance: 0.0005905 Ohm
+----------------------------------------------------
+Output data
+                    Current Dc:      5 A
+                   Current Max:  5.999 A
+                   Current RMS:  5.033 A
+                Current Ripple:  1.998 A
+               Current Density:  0.175 A/mm&sup2;
+                 Joules losses: 0.04618 W
+                         B Max: 0.1038 Tesla
+                   Core losses: 0.005929 W
+                   Temperature:  30.61 &deg;C
+====================================================
+FEMM analysis started... Elapsed time is 5.758644 seconds.
+FEMM analysis started... Elapsed time is 5.180982 seconds.
+FEMM analysis started... Elapsed time is 5.207942 seconds.
+FEMM analysis started... Elapsed time is 5.710865 seconds.
+FEMM analysis started... Elapsed time is 6.948994 seconds.
+FEMM analysis started... Elapsed time is 8.514614 seconds.
+
+====================================================
+Validation of  [Comp3d.InductorCustomEI]
+----------------------------------------------------
+rAC Factor
+               Rel. Mean Error: -3.144 % 
+----------------------------------------------------
+L value
+               Rel. Mean Error: -7.386 % 
+----------------------------------------------------
+Winding Losses
+                      Analytic: 0.04618 W 
+                          FEMM: 0.04293 W 
+                    Rel. Error:  7.573 % 
+----------------------------------------------------
+====================================================
+
+</pre><img vspace="5" hspace="5" src="ExampleDCDCAnalytic_05.png" style="width:560px;height:420px;" alt=""> <img vspace="5" hspace="5" src="ExampleDCDCAnalytic_06.png" style="width:560px;height:420px;" alt=""> <img vspace="5" hspace="5" src="ExampleDCDCAnalytic_07.png" style="width:560px;height:420px;" alt=""> <p>
+<h2>Optimization using an analytical object</h2>
+<p>In some particular cases, we might know what is the waveform of the
+object depending on its value making some assumptions. For example, using
+the equations presented above we can know what is the output current as a
+function of the inductance value. The steps are the same, first the inductor
+and the optimization problem are created</p>
+</p><pre class="codeinput">myInductor = Comp3d.InductorCustomEI(<span class="string">'record'</span>,false);
+myOptProblem = OptimProblem.Optimizer();
+myOptProblem.addComp3d(myInductor);
+</pre><p>
+<p>Then the inductor object is "coupled" with the "exctation" object that
+will give the excitations values as function of the inductance value. In this
+case the excitation object is called "InductorExcitation" and it is set in the
+excitationsElectricAnalytic field</p>
+</p><pre class="codeinput">myInductor.excitationsElectricAnalytic = AnalyticalExcitation.InductorExcitation;
+</pre><p>
+<p>The excitation object is set according to our paricular problem</p>
+</p><pre class="codeinput">myInductor.excitationsElectricAnalytic.vHv = 100;
+myInductor.excitationsElectricAnalytic.vLv = 50;
+myInductor.excitationsElectricAnalytic.iDc = 5;
+myInductor.excitationsElectricAnalytic.fSw = 20e3;
+myInductor.excitationsElectricAnalytic.nSample = 1000;
+myInductor.drawExcitations();
+</pre><img vspace="5" hspace="5" src="ExampleDCDCAnalytic_08.png" style="width:560px;height:420px;" alt=""> <p>
+<p>We set the optimization constraints</p>
+</p><pre class="codeinput">myInductor.constraints.Leq = 1.3e-3;
+myInductor.excitations.thermal.tAir = 30;
+</pre><p>
+<p>The same fmincon algorithm options and objective are set.</p>
+</p><pre class="codeinput">myOptProblem.criteria = {<span class="string">'mass'</span>};
+myOptProblem.optimAlgoType = <span class="string">'GradientDescent'</span>;
+myOptProblem.optimAlgo.options.Display = <span class="string">'final'</span>;
+myOptProblem.solveOptimizationProblem;
+</pre><pre class="codeoutput">
+Local minimum found that satisfies the constraints.
+
+Optimization completed because the objective function is non-decreasing in 
+feasible directions, to within the selected value of the optimality tolerance,
+and constraints are satisfied to within the selected value of the constraint tolerance.
+
+
+
+Successful optimization! Exit flag = 1. First order optimality conditions satisfied.
+</pre><img vspace="5" hspace="5" src="ExampleDCDCAnalytic_09.png" style="width:560px;height:420px;" alt=""> <p>
+<p>The optimal solutions are displayed and validated</p>
+</p><pre class="codeinput">myInductor.displayInformation;
+myInductor.drawComponent;
+myInductor.validateFEMM;
+</pre><pre class="codeoutput">
+====================================================
+Information of  [Comp3d.InductorCustomEI]
+----------------------------------------------------
+Shape
+Dimensions
+                      legWidth: 0.006084
+                  legThickness: 0.04404
+                        airGap: 0.0004014
+           windingCoreDistance: 0.0006
+                interTurnSpace: 0.0001
+                        nTurns:     40
+                conductorWidth: 0.000106
+               conductorHeight: 0.009578
+----------------------------------------------------
+Materials
+             electricConductor: Copper
+            electricInsulation: UPETS
+                  magneticCore: 3C90 TM(25-200kHz)
+----------------------------------------------------
+Geometric Data
+          Manufacturing Volume: 0.06071 l
+                        Weight: 0.2185 Kg
+----------------------------------------------------
+Cost Data
+                         Total: $   0.00
+----------------------------------------------------
+Optimization Constraints
+                temperatureMax:     80
+                      BsatRate:   0.95
+                           Leq: 0.0013
+----------------------------------------------------
+Electric Parameters
+                    Inductance: 0.0013 H
+                 DC resistance: 0.09975 Ohm
+----------------------------------------------------
+Output data
+                    Current Dc:      5 A
+                   Current Max:  5.482 A
+                   Current RMS:  5.008 A
+                Current Ripple: 0.9635 A
+               Current Density:  4.934 A/mm&sup2;
+                 Joules losses:  2.729 W
+                         B Max: 0.3325 Tesla
+                   Core losses: 0.0148 W
+                   Temperature:     80 &deg;C
+====================================================
+FEMM analysis started... Elapsed time is 5.360516 seconds.
+FEMM analysis started... Elapsed time is 4.078052 seconds.
+FEMM analysis started... Elapsed time is 3.680117 seconds.
+FEMM analysis started... Elapsed time is 4.199146 seconds.
+FEMM analysis started... Elapsed time is 5.301214 seconds.
+FEMM analysis started... Elapsed time is 7.492691 seconds.
+
+====================================================
+Validation of  [Comp3d.InductorCustomEI]
+----------------------------------------------------
+rAC Factor
+               Rel. Mean Error:  55.62 % 
+----------------------------------------------------
+L value
+               Rel. Mean Error: -13.41 % 
+----------------------------------------------------
+Winding Losses
+                      Analytic:  2.729 W 
+                          FEMM:   2.72 W 
+                    Rel. Error: 0.3448 % 
+----------------------------------------------------
+====================================================
+
+</pre><img vspace="5" hspace="5" src="ExampleDCDCAnalytic_10.png" style="width:560px;height:420px;" alt=""> <img vspace="5" hspace="5" src="ExampleDCDCAnalytic_11.png" style="width:560px;height:420px;" alt=""> <img vspace="5" hspace="5" src="ExampleDCDCAnalytic_12.png" style="width:560px;height:420px;" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Example DC-DC Analytic
+% <html>
+% <h2>Problem description </h2>
+% <p>The following problem addresses the optimization of an output inductor in
+% a DC-DC buck converter as shown in the figure below. This time however,
+% the excitations of the inductors will be determined by an analytical
+% waveform previously known or will be calculated using an analytical
+% calculation.</p>
+%   <img src="../Sources/Images/BuckConverter.png" alt="Optimization Icon"
+%   style="width:70%"; display="block"; margin="auto"> </img>
+% <h2> Optimization using an analytical waveform</h2>
+% <p>In the previous system, let us suppose we want to design an inductor
+% of 1.3mH. By analytical approximations of a classical DC-DC converter, we
+% know that the low voltage DC current is and the current ripple is
+% determined by the following equation:</p
+% </html>
+
+%%
+%
+% $$\Delta I = \frac{E \cdot \alpha \cdot (1 - \alpha)}{f_{sw} \cdot L}$$
+%
+
+%%
+% <html>
+% with the following parameters:
+% <ul>
+%   <li> E : High DC voltage </li>
+%   <li> &alpha; : transformation ratio </li>
+%   <li> f<sub>sw</sub> : the switching frequency </li>
+%   <li> L : the inductor value </li>
+% </ul>
+% <p>The waveform is the following one</p>
+% </html>
+Idc = 5;
+deltaI = 1;
+fSw = 20e3;
+timeSignal = linspace(0,1/fSw,1000);
+valueSignal = Idc + deltaI * Signal.Triangle(2 * pi * fSw * timeSignal);
+plot(timeSignal,valueSignal);
+
+%%
+% <html>
+% <p> The voltage at the terminals can be approximated to a square
+% waveform</p>
+% </html>
+voltageSignal = 50*square(2*pi*fSw*timeSignal,50);
+plot(timeSignal,voltageSignal);
+
+%%
+% <html>
+% <p>The inductor and the problem is then created, in this case we will use
+% the InductorCustomEI class, as no external solver is used, the record property 
+% is set to "false"</p>
+% </html>
+myOptProblem = OptimProblem.Optimizer;
+myInductor = Comp3d.InductorCustomEI('record',false);
+myOptProblem.addComp3d(myInductor);
+
+%%
+% <html>
+% <p>The inductor constraint value is set to 1.3mH as it is the valued we 
+% will have in the optimization process and the air temperature is set at 30</p>
+% </html>
+myInductor.constraints.Leq = 1.3e-3;
+myInductor.excitations.thermal.tAir = 30;
+
+%%
+% <html>
+% <p>Then the excitations of the inductor are added analytically/p>
+% </html>
+myInductor.setExcitations('time',timeSignal,'current',valueSignal,'voltage',voltageSignal);
+myInductor.drawExcitations;
+
+%%
+% <html>
+% <p>The optimization is launched, in this case, the objective function is the mass and the 
+% MATLAB fmincon function is used</p>
+% </html>
+myOptProblem.criteria = {'mass'};
+myOptProblem.optimAlgoType = 'GradientDescent';
+myOptProblem.optimAlgo.options.Display = 'final';
+myOptProblem.solveOptimizationProblem;
+%%
+% <html>
+% <p>The optimal solutions are displayed and validated</p>
+% </html>
+myInductor.displayInformation;
+myInductor.drawComponent;
+myInductor.validateFEMM;
+
+%%
+% <html>
+% <h2>Optimization using an analytical object</h2>
+% <p>In some particular cases, we might know what is the waveform of the
+% object depending on its value making some assumptions. For example, using
+% the equations presented above we can know what is the output current as a
+% function of the inductance value. The steps are the same, first the inductor
+% and the optimization problem are created</p>
+% </html>
+myInductor = Comp3d.InductorCustomEI('record',false);
+myOptProblem = OptimProblem.Optimizer();
+myOptProblem.addComp3d(myInductor);
+
+%%
+% <html>
+% <p>Then the inductor object is "coupled" with the "exctation" object that
+% will give the excitations values as function of the inductance value. In this
+% case the excitation object is called "InductorExcitation" and it is set in the 
+% excitationsElectricAnalytic field</p>
+% </html>
+myInductor.excitationsElectricAnalytic = AnalyticalExcitation.InductorExcitation;
+
+%%
+% <html>
+% <p>The excitation object is set according to our paricular problem</p>
+% </html>
+myInductor.excitationsElectricAnalytic.vHv = 100;
+myInductor.excitationsElectricAnalytic.vLv = 50;
+myInductor.excitationsElectricAnalytic.iDc = 5;
+myInductor.excitationsElectricAnalytic.fSw = 20e3;
+myInductor.excitationsElectricAnalytic.nSample = 1000;
+myInductor.drawExcitations();
+
+%%
+% <html>
+% <p>We set the optimization constraints</p>
+% </html>
+myInductor.constraints.Leq = 1.3e-3;
+myInductor.excitations.thermal.tAir = 30;
+
+%%
+% <html>
+% <p>The same fmincon algorithm options and objective are set.</p>
+% </html>
+myOptProblem.criteria = {'mass'};
+myOptProblem.optimAlgoType = 'GradientDescent';
+myOptProblem.optimAlgo.options.Display = 'final';
+myOptProblem.solveOptimizationProblem;
+%%
+% <html>
+% <p>The optimal solutions are displayed and validated</p>
+% </html>
+myInductor.displayInformation;
+myInductor.drawComponent;
+myInductor.validateFEMM;
+
+##### SOURCE END #####
+--></body></html>

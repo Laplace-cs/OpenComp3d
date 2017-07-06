@@ -1,0 +1,720 @@
+
+====================================================
+Information of LcEIrct [Comp3d.InductorCustomEI]
+----------------------------------------------------
+Shape
+Dimensions
+                      legWidth:   0.01
+                  legThickness:   0.02
+                        airGap:  0.002
+           windingCoreDistance: 0.0006
+                interTurnSpace:  0.001
+                        nTurns:     10
+                conductorWidth:  0.002
+               conductorHeight:   0.05
+----------------------------------------------------
+Materials
+             electricConductor: Copper
+            electricInsulation: UPETS
+                  magneticCore: 3C90 TM(25-200kHz)
+----------------------------------------------------
+Geometric Data
+          Manufacturing Volume: 0.5662 l
+                        Weight:  2.181 Kg
+----------------------------------------------------
+Cost Data
+                         Total: $   0.00
+----------------------------------------------------
+Optimization Constraints
+                temperatureMax:     80
+                      BsatRate:   0.95
+----------------------------------------------------
+Electric Parameters
+                    Inductance: 1.231e-05 H
+                 DC resistance: 0.0003394 Ohm
+----------------------------------------------------
+Output data
+                    Current Dc:  33.33 A
+                   Current Max:  63.65 A
+                   Current RMS:  39.48 A
+                Current Ripple:  60.64 A
+               Current Density: 0.3333 A/mm²
+                 Joules losses: 0.5289 W
+                         B Max: 0.1958 Tesla
+                   Core losses: 0.7233 W
+                   Temperature:  27.67 °C
+====================================================
+
+====================================================
+Information of baseplate [Comp3d.BasePlate]
+----------------------------------------------------
+Shape
+Dimensions
+                         width:  0.019
+                        length:    0.3
+                        height:  0.005
+----------------------------------------------------
+Materials
+            conductingMaterial: Aluminium
+----------------------------------------------------
+Geometric Data
+          Manufacturing Volume:   0.15 l
+                        Weight:  0.405 Kg
+----------------------------------------------------
+Cost Data
+                         Total: $   0.00
+----------------------------------------------------
+Optimization Constraints
+----------------------------------------------------
+Thermal Parameters
+
+====================================================
+Information of baseplate [Comp3d.BasePlate]
+----------------------------------------------------
+Shape
+Dimensions
+                         width:  0.019
+                        length:    0.3
+                        height:  0.005
+----------------------------------------------------
+Materials
+            conductingMaterial: Aluminium
+----------------------------------------------------
+Geometric Data
+          Manufacturing Volume:   0.15 l
+                        Weight:  0.405 Kg
+----------------------------------------------------
+Cost Data
+                         Total: $   0.00
+----------------------------------------------------
+Optimization Constraints
+----------------------------------------------------
+Thermal Parameters
+            Thermal Resistance: 0.0007032 °C/W
+----------------------------------------------------
+====================================================
+
+====================================================
+Information of fins [Comp3d.RectangularFins]
+----------------------------------------------------
+Shape
+Dimensions
+                     thickness:  0.001
+                        length:    0.3
+                        height:   0.05
+                  numberOfFins:     10
+                gapBetweenFins:  0.001
+----------------------------------------------------
+Materials
+            conductingMaterial: Aluminium
+----------------------------------------------------
+Geometric Data
+          Manufacturing Volume:  0.285 l
+                        Weight:  0.405 Kg
+----------------------------------------------------
+Cost Data
+                         Total: $   0.00
+----------------------------------------------------
+Optimization Constraints
+----------------------------------------------------
+====================================================
+Output Data
+                        Losses:     50 W
+            Inside Temperature:  46.66 °C
+====================================================
+====================================================
+Information of heatSink [Comp3d.HeatSink]
+----------------------------------------------------
+Geometric Data
+          Manufacturing Volume:  0.435 l
+                        Weight:   0.81 kg
+----------------------------------------------------
+Thermal Parameters
+                           Rth: 0.4332 °C/W
+====================================================
+Output Data
+                        Losses:     50 W
+              Base Temperature:  46.66 °C
+              Exit Temperature:  27.26 °C
+               Pressure losses:  97.63 Pa
+====================================================
+
+====================================================
+Information of baseplate [Comp3d.BasePlate]
+----------------------------------------------------
+Shape
+Dimensions
+                         width:  0.019
+                        length:    0.3
+                        height:  0.005
+----------------------------------------------------
+Materials
+            conductingMaterial: Aluminium
+----------------------------------------------------
+Geometric Data
+          Manufacturing Volume:   0.15 l
+                        Weight:  0.405 Kg
+----------------------------------------------------
+Cost Data
+                         Total: $   0.00
+----------------------------------------------------
+Optimization Constraints
+----------------------------------------------------
+Thermal Parameters
+            Thermal Resistance: 0.0007032 °C/W
+----------------------------------------------------
+====================================================
+
+====================================================
+Information of fins [Comp3d.RectangularFins]
+----------------------------------------------------
+Shape
+Dimensions
+                     thickness:  0.001
+                        length:    0.3
+                        height:   0.05
+                  numberOfFins:     10
+                gapBetweenFins:  0.001
+----------------------------------------------------
+Materials
+            conductingMaterial: Aluminium
+----------------------------------------------------
+Geometric Data
+          Manufacturing Volume:  0.285 l
+                        Weight:  0.405 Kg
+----------------------------------------------------
+Cost Data
+                         Total: $   0.00
+----------------------------------------------------
+Optimization Constraints
+----------------------------------------------------
+====================================================
+Output Data
+                        Losses:     50 W
+            Inside Temperature:  46.66 °C
+====================================================
+====================================================
+Information of heatSink [Comp3d.HeatSink]
+----------------------------------------------------
+Geometric Data
+          Manufacturing Volume:  0.435 l
+                        Weight:   0.81 kg
+----------------------------------------------------
+Thermal Parameters
+                           Rth: 0.4332 °C/W
+====================================================
+Output Data
+                        Losses:     50 W
+              Base Temperature:  46.66 °C
+              Exit Temperature:  27.26 °C
+               Pressure losses:  97.63 Pa
+====================================================
+
+====================================================
+Information of baseplate [Comp3d.BasePlate]
+----------------------------------------------------
+Shape
+Dimensions
+                         width:  0.019
+                        length:    0.3
+                        height:  0.005
+----------------------------------------------------
+Materials
+            conductingMaterial: Aluminium
+----------------------------------------------------
+Geometric Data
+          Manufacturing Volume:   0.15 l
+                        Weight:  0.405 Kg
+----------------------------------------------------
+Cost Data
+                         Total: $   0.00
+----------------------------------------------------
+Optimization Constraints
+----------------------------------------------------
+Thermal Parameters
+            Thermal Resistance: 0.0007032 °C/W
+----------------------------------------------------
+====================================================
+
+====================================================
+Information of fins [Comp3d.RectangularFins]
+----------------------------------------------------
+Shape
+Dimensions
+                     thickness:  0.001
+                        length:    0.3
+                        height:   0.05
+                  numberOfFins:     10
+                gapBetweenFins:  0.001
+----------------------------------------------------
+Materials
+            conductingMaterial: Aluminium
+----------------------------------------------------
+Geometric Data
+          Manufacturing Volume:  0.285 l
+                        Weight:  0.405 Kg
+----------------------------------------------------
+Cost Data
+                         Total: $   0.00
+----------------------------------------------------
+Optimization Constraints
+----------------------------------------------------
+====================================================
+Output Data
+                        Losses:     50 W
+            Inside Temperature:  46.66 °C
+====================================================
+====================================================
+Information of heatSink [Comp3d.HeatSink]
+----------------------------------------------------
+Geometric Data
+          Manufacturing Volume:  0.435 l
+                        Weight:   0.81 kg
+----------------------------------------------------
+Thermal Parameters
+                           Rth: 0.4332 °C/W
+====================================================
+Output Data
+                        Losses:     50 W
+              Base Temperature:  46.66 °C
+              Exit Temperature:  27.26 °C
+               Pressure losses:  97.63 Pa
+====================================================
+
+====================================================
+Information of baseplate [Comp3d.BasePlate]
+----------------------------------------------------
+Shape
+Dimensions
+                         width:  0.019
+                        length:    0.3
+                        height:  0.005
+----------------------------------------------------
+Materials
+            conductingMaterial: Aluminium
+----------------------------------------------------
+Geometric Data
+          Manufacturing Volume:   0.15 l
+                        Weight:  0.405 Kg
+----------------------------------------------------
+Cost Data
+                         Total: $   0.00
+----------------------------------------------------
+Optimization Constraints
+----------------------------------------------------
+Thermal Parameters
+            Thermal Resistance: 0.0007032 °C/W
+----------------------------------------------------
+====================================================
+
+====================================================
+Information of fins [Comp3d.RectangularFins]
+----------------------------------------------------
+Shape
+Dimensions
+                     thickness:  0.001
+                        length:    0.3
+                        height:   0.05
+                  numberOfFins:     10
+                gapBetweenFins:  0.001
+----------------------------------------------------
+Materials
+            conductingMaterial: Aluminium
+----------------------------------------------------
+Geometric Data
+          Manufacturing Volume:  0.285 l
+                        Weight:  0.405 Kg
+----------------------------------------------------
+Cost Data
+                         Total: $   0.00
+----------------------------------------------------
+Optimization Constraints
+----------------------------------------------------
+====================================================
+Output Data
+                        Losses:     50 W
+            Inside Temperature:  46.66 °C
+====================================================
+====================================================
+Information of heatSink [Comp3d.HeatSink]
+----------------------------------------------------
+Geometric Data
+          Manufacturing Volume:  0.435 l
+                        Weight:   0.81 kg
+----------------------------------------------------
+Thermal Parameters
+                           Rth: 0.4332 °C/W
+====================================================
+Output Data
+                        Losses:     50 W
+              Base Temperature:  46.66 °C
+              Exit Temperature:  27.26 °C
+               Pressure losses:  97.63 Pa
+====================================================
+
+====================================================
+Information of baseplate [Comp3d.BasePlate]
+----------------------------------------------------
+Shape
+Dimensions
+                         width:  0.019
+                        length:    0.3
+                        height:  0.005
+----------------------------------------------------
+Materials
+            conductingMaterial: Aluminium
+----------------------------------------------------
+Geometric Data
+          Manufacturing Volume:   0.15 l
+                        Weight:  0.405 Kg
+----------------------------------------------------
+Cost Data
+                         Total: $   0.00
+----------------------------------------------------
+Optimization Constraints
+----------------------------------------------------
+Thermal Parameters
+            Thermal Resistance: 0.0007032 °C/W
+----------------------------------------------------
+====================================================
+
+====================================================
+Information of fins [Comp3d.RectangularFins]
+----------------------------------------------------
+Shape
+Dimensions
+                     thickness:  0.001
+                        length:    0.3
+                        height:   0.05
+                  numberOfFins:     10
+                gapBetweenFins:  0.001
+----------------------------------------------------
+Materials
+            conductingMaterial: Aluminium
+----------------------------------------------------
+Geometric Data
+          Manufacturing Volume:  0.285 l
+                        Weight:  0.405 Kg
+----------------------------------------------------
+Cost Data
+                         Total: $   0.00
+----------------------------------------------------
+Optimization Constraints
+----------------------------------------------------
+====================================================
+Output Data
+                        Losses:     50 W
+            Inside Temperature:  46.66 °C
+====================================================
+====================================================
+Information of heatSink [Comp3d.HeatSink]
+----------------------------------------------------
+Geometric Data
+          Manufacturing Volume:  0.435 l
+                        Weight:   0.81 kg
+----------------------------------------------------
+Thermal Parameters
+                           Rth: 0.4332 °C/W
+====================================================
+Output Data
+                        Losses:     50 W
+              Base Temperature:  46.66 °C
+              Exit Temperature:  27.26 °C
+               Pressure losses:  97.63 Pa
+====================================================
+
+====================================================
+Information of baseplate [Comp3d.BasePlate]
+----------------------------------------------------
+Shape
+Dimensions
+                         width:  0.019
+                        length:    0.3
+                        height:  0.005
+----------------------------------------------------
+Materials
+            conductingMaterial: Aluminium
+----------------------------------------------------
+Geometric Data
+          Manufacturing Volume:   0.15 l
+                        Weight:  0.405 Kg
+----------------------------------------------------
+Cost Data
+                         Total: $   0.00
+----------------------------------------------------
+Optimization Constraints
+----------------------------------------------------
+Thermal Parameters
+            Thermal Resistance: 0.0007032 °C/W
+----------------------------------------------------
+====================================================
+
+====================================================
+Information of fins [Comp3d.RectangularFins]
+----------------------------------------------------
+Shape
+Dimensions
+                     thickness:  0.001
+                        length:    0.3
+                        height:   0.05
+                  numberOfFins:     10
+                gapBetweenFins:  0.001
+----------------------------------------------------
+Materials
+            conductingMaterial: Aluminium
+----------------------------------------------------
+Geometric Data
+          Manufacturing Volume:  0.285 l
+                        Weight:  0.405 Kg
+----------------------------------------------------
+Cost Data
+                         Total: $   0.00
+----------------------------------------------------
+Optimization Constraints
+----------------------------------------------------
+====================================================
+Output Data
+                        Losses:     50 W
+            Inside Temperature:  46.66 °C
+====================================================
+====================================================
+Information of heatSink [Comp3d.HeatSink]
+----------------------------------------------------
+Geometric Data
+          Manufacturing Volume:  0.435 l
+                        Weight:   0.81 kg
+----------------------------------------------------
+Thermal Parameters
+                           Rth: 0.4332 °C/W
+====================================================
+Output Data
+                        Losses:     50 W
+              Base Temperature:  46.66 °C
+              Exit Temperature:  27.26 °C
+               Pressure losses:  97.63 Pa
+====================================================
+
+====================================================
+Information of LcEIrct [Comp3d.InductorCustomEI]
+----------------------------------------------------
+Shape
+Dimensions
+                      legWidth:   0.01
+                  legThickness:   0.02
+                        airGap:  0.002
+           windingCoreDistance: 0.0006
+                interTurnSpace:  0.001
+                        nTurns:     10
+                conductorWidth:  0.002
+               conductorHeight:   0.05
+----------------------------------------------------
+Materials
+             electricConductor: Copper
+            electricInsulation: UPETS
+                  magneticCore: 3C90 TM(25-200kHz)
+----------------------------------------------------
+Geometric Data
+          Manufacturing Volume: 0.5662 l
+                        Weight:  2.181 Kg
+----------------------------------------------------
+Cost Data
+                         Total: $   0.00
+----------------------------------------------------
+Optimization Constraints
+                temperatureMax:     80
+                      BsatRate:   0.95
+----------------------------------------------------
+Electric Parameters
+                    Inductance: 1.231e-05 H
+                 DC resistance: 0.0003394 Ohm
+----------------------------------------------------
+Output data
+                    Current Dc:  33.33 A
+                   Current Max:  63.65 A
+                   Current RMS:  39.48 A
+                Current Ripple:  60.64 A
+               Current Density: 0.3333 A/mm²
+                 Joules losses: 0.5289 W
+                         B Max: 0.1958 Tesla
+                   Core losses: 0.7233 W
+                   Temperature:  27.67 °C
+====================================================
+
+====================================================
+Information of LcEIrct [Comp3d.InductorCustomEI]
+----------------------------------------------------
+Shape
+Dimensions
+                      legWidth:   0.01
+                  legThickness:   0.02
+                        airGap:  0.002
+           windingCoreDistance: 0.0006
+                interTurnSpace:  0.001
+                        nTurns:     10
+                conductorWidth:  0.002
+               conductorHeight:   0.05
+----------------------------------------------------
+Materials
+             electricConductor: Copper
+            electricInsulation: UPETS
+                  magneticCore: 3C90 TM(25-200kHz)
+----------------------------------------------------
+Geometric Data
+          Manufacturing Volume: 0.5662 l
+                        Weight:  2.181 Kg
+----------------------------------------------------
+Cost Data
+                         Total: $   0.00
+----------------------------------------------------
+Optimization Constraints
+                temperatureMax:     80
+                      BsatRate:   0.95
+----------------------------------------------------
+Electric Parameters
+                    Inductance: 1.231e-05 H
+                 DC resistance: 0.0003394 Ohm
+----------------------------------------------------
+Output data
+                    Current Dc:  33.33 A
+                   Current Max:  63.65 A
+                   Current RMS:  39.48 A
+                Current Ripple:  60.64 A
+               Current Density: 0.3333 A/mm²
+                 Joules losses: 0.5289 W
+                         B Max: 0.1958 Tesla
+                   Core losses: 0.7233 W
+                   Temperature:  27.67 °C
+====================================================
+
+====================================================
+Information of LcEIrct [Comp3d.InductorCustomEI]
+----------------------------------------------------
+Shape
+Dimensions
+                      legWidth:   0.01
+                  legThickness:   0.02
+                        airGap:  0.002
+           windingCoreDistance: 0.0006
+                interTurnSpace:  0.001
+                        nTurns:     10
+                conductorWidth:  0.002
+               conductorHeight:   0.05
+----------------------------------------------------
+Materials
+             electricConductor: Copper
+            electricInsulation: UPETS
+                  magneticCore: 3C90 TM(25-200kHz)
+----------------------------------------------------
+Geometric Data
+          Manufacturing Volume: 0.5662 l
+                        Weight:  2.181 Kg
+----------------------------------------------------
+Cost Data
+                         Total: $   0.00
+----------------------------------------------------
+Optimization Constraints
+                temperatureMax:     80
+                      BsatRate:   0.95
+----------------------------------------------------
+Electric Parameters
+                    Inductance: 1.231e-05 H
+                 DC resistance: 0.0003394 Ohm
+----------------------------------------------------
+Output data
+                    Current Dc:  33.33 A
+                   Current Max:  63.65 A
+                   Current RMS:  39.48 A
+                Current Ripple:  60.64 A
+               Current Density: 0.3333 A/mm²
+                 Joules losses: 0.5289 W
+                         B Max: 0.1958 Tesla
+                   Core losses: 0.7233 W
+                   Temperature:  27.67 °C
+====================================================
+
+====================================================
+Information of LcEIrct [Comp3d.InductorCustomEI]
+----------------------------------------------------
+Shape
+Dimensions
+                      legWidth:   0.01
+                  legThickness:   0.02
+                        airGap:  0.002
+           windingCoreDistance: 0.0006
+                interTurnSpace:  0.001
+                        nTurns:     10
+                conductorWidth:  0.002
+               conductorHeight:   0.05
+----------------------------------------------------
+Materials
+             electricConductor: Copper
+            electricInsulation: UPETS
+                  magneticCore: 3C90 TM(25-200kHz)
+----------------------------------------------------
+Geometric Data
+          Manufacturing Volume: 0.5662 l
+                        Weight:  2.181 Kg
+----------------------------------------------------
+Cost Data
+                         Total: $   0.00
+----------------------------------------------------
+Optimization Constraints
+                temperatureMax:     80
+                      BsatRate:   0.95
+----------------------------------------------------
+Electric Parameters
+                    Inductance: 1.231e-05 H
+                 DC resistance: 0.0003394 Ohm
+----------------------------------------------------
+Output data
+                    Current Dc:  33.33 A
+                   Current Max:  63.65 A
+                   Current RMS:  39.48 A
+                Current Ripple:  60.64 A
+               Current Density: 0.3333 A/mm²
+                 Joules losses: 0.5289 W
+                         B Max: 0.1958 Tesla
+                   Core losses: 0.7233 W
+                   Temperature:  27.67 °C
+====================================================
+
+====================================================
+Information of  [Comp3d.TransformerHighFreq]
+----------------------------------------------------
+Shape
+Dimensions
+               kTransformation:      2
+                      legWidth:   0.01
+                  legThickness:   0.01
+                        airGap:  1e-06
+                interTurnSpace:  1e-06
+                innerAirLength:  0.001
+           windingCoreDistance:  0.001
+                       nTurns1:      8
+               conductorWidth1:  0.004
+               conductorWidth2:  0.004
+              conductorHeight1:  0.002
+              conductorHeight2:  0.001
+----------------------------------------------------
+Materials
+             electricConductor: Copper
+            electricInsulation: UPETS
+                  magneticCore: 3C90 TM(25-200kHz)
+----------------------------------------------------
+Geometric Data
+          Manufacturing Volume: 0.03356 l
+                        Weight: 0.2058 Kg
+----------------------------------------------------
+Cost Data
+                         Total: $   0.00
+----------------------------------------------------
+Optimization Constraints
+                temperatureMax:     80
+                      BsatRate:   0.95
+----------------------------------------------------
+               Inductance Mag:: 0.0006808 H
+              DC resistance 1:: 0.00142 Ohm
+              DC resistance 2:: 0.005678 Ohm
+----------------------------------------------------
+Output data
+                 Joules losses: 0.5673 W

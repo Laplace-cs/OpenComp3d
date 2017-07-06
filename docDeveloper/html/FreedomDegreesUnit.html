@@ -1,0 +1,257 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Freedom degree unit class</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-02-28"><meta name="DC.source" content="FreedomDegreesUnit.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Freedom degree unit class</h1><p>
+<p>FreedomDegreeUnit is the basic class for the freedom degrees of a
+Comp3d.Component class. That is, each degree of freedom has it own
+separate FreedomDegreeUnit class.</p>
+<h2>FreedomDegreeUnit inputs</h2>
+<p>The class has a series of inputs that must be defined for each
+freedom degree</p>
+<table style="width:50%">
+  <tr>
+      <th>Name</th><th>Name of the freedom degree</th>
+  </tr><tr>
+      <th>Unit</th><th>Unit of the freedom degree</th>
+  </tr><tr>
+      <th>lB</th><th>Lower bound of the freedom degree for the
+      optimization</th>
+  </tr><tr>
+      <th>x0</th><th>Starting value in an optimization for the freedom
+      degree</th>
+  </tr><tr>
+      <th>uB</th><th>Upper bound of the freedom degree for the optimization</th>
+  </tr><tr>
+      <th>status</th><th>Defines the behaviour the freedom degree will
+      have during the optimization. It can take three different values:
+      <ul>
+          <li>free: the freedom degree is be an optimization variable
+          that can vary between the lower bound (lB) and upper
+          bound(uB)</li>
+          <li>setToX0: the freedom degree has a fixed value determined by
+          the x0 and will not change during the optimization.</li>
+          <li>homothetic: the freedom degree depends on other freedom
+          degrees and will vary between lB and uB but it is not an
+          optimization variable.</li>
+       </ul></th>
+  </tr><tr>
+     <th>relation</th><th>Defines the homothetic relation for the freedom
+     degree. IMPORTANT: the relation field must be defined in order to
+     set the status property to <i>"homothetic"</i>.</th>
+  </tr><tr>
+      <th>val</th><th>Defines the current actual value of the freedom
+      degree which can be different from the x0 freedom degree</th>
+  </tr>
+  </table>
+  <p></p>
+  <h2>How the homothetic relations works</h2>
+  <p>When the <i>"status"</i> property is set to <i>"homothetic"</i> the
+  freedom degree is dependent of another freedom degree which can be as
+  well dependent on another and so forth. As shown in the following figure.</p>
+  <p>To deal with this kind of behaviour three additional properties are
+  defined.</p>
+  <ul>
+      <li><b>objectRef</b>: defines the object where the freedom degree is
+      attached, that is which element contains this freedom degree and is
+      going to be impacted by the freedom degree class. For example, if
+      we are considering the number of turns of a certain inductor
+      object, the inductor object is our "objectRef".</li>
+      <li><b>relationObject</b>: defines the object from which the object is
+      dependent. It can be the same object, for example the length of a
+      baseplate can depend on the width of the baseplate (length = 2*
+      width) or it can depend on another different object. For example,
+      the lenght of the baseplate may depend on the length of the fins.
+      <b>IMPORTANT</b>: if the relationObject is different than
+      objectRef, some methods of freedom degrees might become
+      blocked.</li>
+      <li><b>freedomDegreeDepArray</b>: determines the freedomDegreeUnit classes
+      that are dependent on the freedomDegreeUnit and that will be called
+      each time the freedomDegree value changes</li>
+  </ul>
+  <img src="../Sources/Images/FreedomDegreeUnit.png" alt="Object Icon"
+  style="width:50%;display:block;margin:auto";" </img>
+  <p>For example, let us consider in a heatsink the length of the baseplate that
+  depends is the same as the length of the fins, and the width of the baseplate that
+  is defined as 2 times the length of the baseplate.The schematic will
+  rest as described by the following figure.</p>
+  <img src="../Sources/Images/FreedomDegreeUnitHeatSink.png" alt="Object Icon"
+  style="width:50%;display:block;margin:auto";" </img>
+<h2>How to link freedom degrees</h2>
+<p>By default, the relationObj is considered the same as the objectRef,
+that is, we consider the relationship is set between freedom degrees of
+the same component.</p>
+<p>However in some case the relation might be set between different
+components. The method to do so is called
+<i>homotheticFreedomDeg.linkFreedomDegrees(homotheticFreedomDeg,objectToRelate)</i></p>
+<p>After this instruction, the freedom degrees remain as follows.</p>
+  <img src="../Sources/Images/FreedomDegreeLinkExample.png" alt="Object Icon"
+  style="width:90%;display:block;margin:auto";" </img>
+<p>Indeed, a link has been created between the freedom degrees, as a
+result, when the value of the free freedom degree changes the homothetic
+value is updated as well. The chain of relation is called sequentally and
+no loop can be established between objects</p>
+  <img src="../Sources/Images/FreedomDegreeChain.png" alt="Object Icon"
+  style="width:50%;display:block;margin:auto";" </img>
+</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Freedom degree unit class
+% <html>
+% <p>FreedomDegreeUnit is the basic class for the freedom degrees of a
+% Comp3d.Component class. That is, each degree of freedom has it own
+% separate FreedomDegreeUnit class.</p>
+% <h2>FreedomDegreeUnit inputs</h2>
+% <p>The class has a series of inputs that must be defined for each
+% freedom degree</p>
+% <table style="width:50%">
+%   <tr>
+%       <th>Name</th><th>Name of the freedom degree</th>
+%   </tr><tr>
+%       <th>Unit</th><th>Unit of the freedom degree</th>
+%   </tr><tr>
+%       <th>lB</th><th>Lower bound of the freedom degree for the
+%       optimization</th>
+%   </tr><tr>
+%       <th>x0</th><th>Starting value in an optimization for the freedom
+%       degree</th>
+%   </tr><tr>
+%       <th>uB</th><th>Upper bound of the freedom degree for the optimization</th>
+%   </tr><tr>
+%       <th>status</th><th>Defines the behaviour the freedom degree will
+%       have during the optimization. It can take three different values:
+%       <ul>
+%           <li>free: the freedom degree is be an optimization variable
+%           that can vary between the lower bound (lB) and upper
+%           bound(uB)</li>
+%           <li>setToX0: the freedom degree has a fixed value determined by
+%           the x0 and will not change during the optimization.</li>
+%           <li>homothetic: the freedom degree depends on other freedom
+%           degrees and will vary between lB and uB but it is not an
+%           optimization variable.</li>
+%        </ul></th>
+%   </tr><tr>
+%      <th>relation</th><th>Defines the homothetic relation for the freedom
+%      degree. IMPORTANT: the relation field must be defined in order to
+%      set the status property to <i>"homothetic"</i>.</th>
+%   </tr><tr>
+%       <th>val</th><th>Defines the current actual value of the freedom
+%       degree which can be different from the x0 freedom degree</th>
+%   </tr>
+%   </table>
+%   <p></p>
+%   <h2>How the homothetic relations works</h2>
+%   <p>When the <i>"status"</i> property is set to <i>"homothetic"</i> the
+%   freedom degree is dependent of another freedom degree which can be as
+%   well dependent on another and so forth. As shown in the following figure.</p>
+%   <p>To deal with this kind of behaviour three additional properties are
+%   defined.</p>
+%   <ul>
+%       <li><b>objectRef</b>: defines the object where the freedom degree is
+%       attached, that is which element contains this freedom degree and is
+%       going to be impacted by the freedom degree class. For example, if
+%       we are considering the number of turns of a certain inductor
+%       object, the inductor object is our "objectRef".</li>
+%       <li><b>relationObject</b>: defines the object from which the object is
+%       dependent. It can be the same object, for example the length of a
+%       baseplate can depend on the width of the baseplate (length = 2*
+%       width) or it can depend on another different object. For example,
+%       the lenght of the baseplate may depend on the length of the fins.
+%       <b>IMPORTANT</b>: if the relationObject is different than
+%       objectRef, some methods of freedom degrees might become
+%       blocked.</li>
+%       <li><b>freedomDegreeDepArray</b>: determines the freedomDegreeUnit classes
+%       that are dependent on the freedomDegreeUnit and that will be called
+%       each time the freedomDegree value changes</li>
+%   </ul>
+%   <img src="../Sources/Images/FreedomDegreeUnit.png" alt="Object Icon"
+%   style="width:50%;display:block;margin:auto";" </img>
+%   <p>For example, let us consider in a heatsink the length of the baseplate that
+%   depends is the same as the length of the fins, and the width of the baseplate that
+%   is defined as 2 times the length of the baseplate.The schematic will
+%   rest as described by the following figure.</p>
+%   <img src="../Sources/Images/FreedomDegreeUnitHeatSink.png" alt="Object Icon"
+%   style="width:50%;display:block;margin:auto";" </img>
+% <h2>How to link freedom degrees</h2>
+% <p>By default, the relationObj is considered the same as the objectRef,
+% that is, we consider the relationship is set between freedom degrees of
+% the same component.</p>
+% <p>However in some case the relation might be set between different
+% components. The method to do so is called 
+% <i>homotheticFreedomDeg.linkFreedomDegrees(homotheticFreedomDeg,objectToRelate)</i></p>
+% <p>After this instruction, the freedom degrees remain as follows.</p>
+%   <img src="../Sources/Images/FreedomDegreeLinkExample.png" alt="Object Icon"
+%   style="width:90%;display:block;margin:auto";" </img>
+% <p>Indeed, a link has been created between the freedom degrees, as a
+% result, when the value of the free freedom degree changes the homothetic
+% value is updated as well. The chain of relation is called sequentally and
+% no loop can be established between objects</p>
+%   <img src="../Sources/Images/FreedomDegreeChain.png" alt="Object Icon"
+%   style="width:50%;display:block;margin:auto";" </img>
+% </html>
+%   
+##### SOURCE END #####
+--></body></html>

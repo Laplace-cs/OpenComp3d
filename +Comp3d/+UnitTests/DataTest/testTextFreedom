@@ -1,0 +1,9 @@
+                    nameFields,         lB,         x0,         uB,       unit,        status,                 with
+                      legWidth,      0.005,       0.01,        0.1,      meter,          free, 
+                  legThickness,       0.01,       0.02,        0.1,      meter,          free, 
+                        airGap,      1e-06,     0.0003,      0.003,      meter,          free, 
+           windingCoreDistance,        NaN,     0.0006,        NaN,      meter,       setToX0, 
+                interTurnSpace,        NaN,     0.0001,        NaN,      meter,       setToX0, 
+                        nTurns,          2,          8,         40,       turn,          free, 
+                conductorWidth,     0.0001,      0.001,      0.002,      meter,          free, 
+               conductorHeight,      0.007,       0.03,       0.06,      meter,          free, 

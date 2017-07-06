@@ -1,0 +1,525 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Sweeping Analysis</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-07-05"><meta name="DC.source" content="SweepingAnalysis.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Sweeping Analysis</h1><p>
+<p>In some cases, the designer wants to know what is the impact of changing
+a certain parameter in the design or what is the impact in the final
+solution if a certain design constraint is modified</p>
+<h2> Inputs sweeping</h2>
+<p>Once the model is defined, the user might want to know what is the
+impact in some parameters when one the inputs is modified</p>
+<p>The tool to perform this kind of sweep analysis is called
+<i>SweepTool.SweepTool</i>.
+</p><pre class="codeinput">mySweepTool = SweepTool.SweepTool;
+</pre><p>
+<p>Then we add the element that we want to look the sensitivity. In this
+case we will look the variation of an Inductor.</p>
+</p><pre class="codeinput">myInductor = Comp3d.InductorCustomEI(<span class="string">'name'</span>,<span class="string">'inductorSweep'</span>);
+mySweepTool.addElement(myInductor);
+</pre><p>
+<p>We select the variables that we are going to change to look the sensibility.
+In this case, the variables we are going to change are:</p>
+<ul>
+  <li>Magnetic materials (3C85,3C90)</li>
+  <li>Winding materials (Copper, Aluminium)</li>
+  <li>Leg width</li>
+</ul>
+<p>The command to add the sweeping variable is
+<i>SweepTool variable</i>.(<i>Name of the component.Name of the variable</i>,<i>vector(numeric)
+or cell(char) values to vary</i>,<i>units</i>)</p>
+</p><pre class="codeinput">mySweepTool.addVariable( <span class="string">'inductorSweep.materials.magneticCore'</span>, {<span class="string">'3C85 Philips(20-100kHz)'</span>,<span class="string">'3C90 TM(25-200kHz)'</span>}, <span class="string">'core'</span>);
+mySweepTool.addVariable( <span class="string">'inductorSweep.materials.electricConductor'</span>, {<span class="string">'Copper'</span>,<span class="string">'Aluminium'</span>}, <span class="string">'conductor'</span>);
+mySweepTool.addVariable( <span class="string">'inductorSweep.dimensions.legWidth'</span>, 0.010:0.02:0.020, <span class="string">'meter'</span>);
+</pre><p>
+<p>Once the sweep variables have been determined we need to determine which are
+the variables we want to display the impact. The command to add the the
+outputs is <i>Sweep Tool variable</i>.addOuput(<i>name of the
+output</i>,<i>units</i>)</p>
+<p>In this case the chosen outputs to plot are the mass and the inductance value</p>
+</p><pre class="codeinput">mySweepTool.addOutput( <span class="string">'inductorSweep.outputData.geometric.weight'</span>, <span class="string">'Kg'</span>);
+mySweepTool.addOutput( <span class="string">'inductorSweep.modelParameters.electric.Lmodel.val'</span>, <span class="string">'H'</span>);
+</pre><p>
+<p>Once all the input/output variables have been determined we proceed to
+the evaluation. The instruction is <i>SweepTool
+variable</i>.evaluate.</p>
+</p><pre class="codeinput">mySweepTool.evaluate;
+</pre><p>
+<p>Then, we can perform various plots to show the sensibility. In these
+plots, we can show the sensibility up to three different variables. The command
+to perform this operation is <i>Sweep Tool variable</i>.plotOutput(<i>name of the component.name of
+the output</i>,<i>name of input </i>,...)</p>
+<p>For example, let us plot the inductance value as function of the
+electricConductor when we chose a 3C85 magnetic core and
+legWidth of 0.02</p>
+</p><pre class="codeinput">mySweepTool.plotOutput(<span class="string">'inductorSweep.modelParameters.electric.Lmodel.val'</span>,<span class="string">'myInductor.materials.magneticCore'</span>,{<span class="string">'3C85 Philips(20-100kHz)'</span>},<span class="keyword">...</span>
+                                                   <span class="string">'myInductor.dimensions.legWidth'</span>,0.02);
+</pre><img vspace="5" hspace="5" src="SweepingAnalysis_01.png" style="width:560px;height:420px;" alt=""> <p>
+<p>We can plot as well the mass as a function of all the inputs (up to
+3)</p>
+</p><pre class="codeinput">mySweepTool.plotOutput(<span class="string">'inductorSweep.outputData.geometric.weight'</span>);
+</pre><img vspace="5" hspace="5" src="SweepingAnalysis_02.png" style="width:560px;height:420px;" alt=""> <p>
+<h2>Sweeping analysis using a circuit solver</h2>
+<p>In some case we might want to plot using a circuit solver, where a
+circuit element parameter changes.</p>
+<p>For example, let us consider we want to look what is the impact in the
+losses when the switching frequency of a buck converter is changed.</p>
+</p><pre class="codeinput">mySweepTool = SweepTool.SweepTool;
+myInductor = Comp3d.InductorCustomEI(<span class="string">'name'</span>,<span class="string">'inductorSweepCircuit'</span>);
+</pre><p>
+<p>We describe the circuit.</p>
+</p><pre class="codeinput">circuit = Ckt.CktComposite();
+n = circuit.createNode(4);
+circuit.addGnd(n(2));
+circuit.addCkt(Vdc(200),{n{1},n{2}});
+dcdcConvert = Chopper();
+dcdcConvert.modul.fCar = 10e3;
+dcdcConvert.opPoint.alphaBuck = 0.5;
+circuit.addCkt(dcdcConvert,{n{1},n{3},n{2}});
+circuit.addCkt(myInductor.electricModel,{n{3},n{4}});
+circuit.addCkt(Resistor(1),{n{4},n{2}});
+</pre><pre class="codeoutput">Warning: SimulationSolver.Facture: Ootee by default 
+Warning: The electric model of Comp3d.InductorCustomEI:inductorSweepCircuit has
+changed 
+</pre><p>
+<p>The excitation object is set according to our particular problem</p>
+</p><pre class="codeinput">myInductor.excitationsElectricAnalytic = AnalyticalExcitation.InductorExcitation;
+myInductor.excitationsElectricAnalytic.vHv = 200;
+myInductor.excitationsElectricAnalytic.vLv = 100;
+myInductor.excitationsElectricAnalytic.iDc = 100;
+myInductor.excitationsElectricAnalytic.fSw = 20e3;
+myInductor.excitationsElectricAnalytic.nSample = 1000;
+</pre><p>
+<p>We add the inductor to the sweep tool.</p>
+</p><pre class="codeinput">mySweepTool.addElement(myInductor);
+</pre><p>
+<p>And we determine the inputs, the outputs and the elements.</p>
+</p><pre class="codeinput">mySweepTool.addVariable( <span class="string">'inductorSweepCircuit.materials.electricConductor'</span>, {<span class="string">'Copper'</span>,<span class="string">'Aluminium'</span>}, <span class="string">'conductor'</span>);
+mySweepTool.addVariable( <span class="string">'inductorSweepCircuit.materials.magneticCore'</span>, {<span class="string">'3C85 Philips(20-100kHz)'</span>,<span class="string">'3C90 TM(25-200kHz)'</span>}, <span class="string">'core'</span>);
+mySweepTool.addVariable( <span class="string">'inductorSweepCircuit.excitationsElectricAnalytic.fSw'</span>, 10e3:10e3:100e3, <span class="string">'Hz'</span>);
+mySweepTool.addOutput( <span class="string">'inductorSweepCircuit.outputData.thermal.losses'</span>,<span class="string">'W'</span>);
+</pre><p>
+<p>Once all the input/output variables have been determined we proceed to
+the evaluation.</p>
+</p><pre class="codeinput">mySweepTool.evaluate;
+</pre><p>
+<p>And we plot the losses for the 3C85 material.</p>
+</p><pre class="codeinput">mySweepTool.plotOutput(<span class="string">'inductorSweepCircuit.outputData.thermal.losses'</span>,<span class="string">'inductorSweepCircuit.materials.magneticCore'</span>,{<span class="string">'3C85 Philips(20-100kHz)'</span>});
+</pre><img vspace="5" hspace="5" src="SweepingAnalysis_03.png" style="width:560px;height:420px;" alt=""> <p>
+<p>Or just for a frequency of 20 kHz.</p>
+</p><pre class="codeinput">mySweepTool.plotOutput(<span class="string">'inductorSweepCircuit.outputData.thermal.losses'</span>,<span class="string">'inductorSweepCircuit.materials.magneticCore'</span>,{<span class="string">'3C85 Philips(20-100kHz)'</span>},<span class="keyword">...</span>
+                       <span class="string">'inductorSweepCircuit.excitationsElectricAnalytic.fSw'</span>,20e3);
+</pre><img vspace="5" hspace="5" src="SweepingAnalysis_04.png" style="width:560px;height:420px;" alt=""> <p>
+<h2> Optimization parameter sweeping</h2>
+<p>In the previous case we looked what was the impact of the switching frequency for a certain
+inductor. However, the user might want to know what is the impact in the final mass when performing
+an optimization and a variation of the switching frequency.</p>
+<p>The class that regroups the optimization methods and the sweeping tool
+functionalities is <i>SweepTool.SweepTool</i></p>
+<p>For example, let us see the impact on the optimal component mass as
+function of the switching frequency. First we create the class and add it as an optimization.</p>
+</p><pre class="codeinput">mySensitivityOptimizer = OptimProblem.SensitivityOptimizer();
+myInductor = Comp3d.InductorCustomEI(<span class="string">'name'</span>,<span class="string">'inductorSensitivity'</span>);
+mySensitivityOptimizer.addComp3d(myInductor);
+</pre><p>
+<p>We create the analytical circuit and add it to the optimization</p>
+</p><pre class="codeinput">myInductor.excitationsElectricAnalytic = AnalyticalExcitation.InductorExcitation;
+myInductor.excitationsElectricAnalytic.vHv = 200;
+myInductor.excitationsElectricAnalytic.vLv = 100;
+myInductor.excitationsElectricAnalytic.iDc = 100;
+myInductor.excitationsElectricAnalytic.fSw = 20e3;
+myInductor.excitationsElectricAnalytic.nSample = 1000;
+</pre><p>
+<p>In this case, the parameters that vary are:</p>
+<ul>
+  <li>Core Material : N88 (Ferrite), 500F PC (Nanocrystallin)</li>
+  <li>Switching frequency: [10kHz,50kHz]</li>
+  <li>Maximal temperature : [80,100]</i>
+</ul>
+<p>And the output is the mass of the inductor.</p>
+</p><pre class="codeinput">mySensitivityOptimizer.addElement(myInductor);
+
+mySensitivityOptimizer.addVariable( <span class="string">'inductorSensitivity.materials.magneticCore'</span>, {<span class="string">'N88'</span>,<span class="string">'500F PC'</span>}, <span class="string">'core'</span>);
+mySensitivityOptimizer.addVariable( <span class="string">'inductorSensitivity.excitationsElectricAnalytic.fSw'</span>, 10e3:10e3:50e3, <span class="string">'Hz'</span>);
+mySensitivityOptimizer.addVariable( <span class="string">'inductorSensitivity.constraints.temperatureMax'</span>, 80:5:100, <span class="string">'&deg;C'</span>);
+mySensitivityOptimizer.addOutput( <span class="string">'inductorSensitivity.outputData.geometric.weight'</span>,<span class="string">'kg'</span>);
+</pre><p>
+<p>We can set the optimization criteria and the algorithm as in any optimization problem</p>
+</p><pre class="codeinput">mySensitivityOptimizer.criteria = {<span class="string">'mass'</span>};
+mySensitivityOptimizer.optimAlgoType = <span class="string">'GradientDescent'</span>;
+</pre><p>
+<p>The sensitivity analysis is launched, in this case the sensitivity parameters that give the optimal mass are given</p>
+</p><pre class="codeinput">mySensitivityOptimizer.optimAlgo.options.Display = <span class="string">'off'</span>;
+[x, fval] = mySensitivityOptimizer.evaluate;
+</pre><pre class="codeoutput">Successful optimization! Exit flag = 2. Change in X too small.
+Successful optimization! Exit flag = 1. First order optimality conditions satisfied.
+Successful optimization! Exit flag = 2. Change in X too small.
+Successful optimization! Exit flag = 1. First order optimality conditions satisfied.
+Successful optimization! Exit flag = 2. Change in X too small.
+Successful optimization! Exit flag = 2. Change in X too small.
+Successful optimization! Exit flag = 2. Change in X too small.
+Successful optimization! Exit flag = 1. First order optimality conditions satisfied.
+Successful optimization! Exit flag = 2. Change in X too small.
+Successful optimization! Exit flag = 1. First order optimality conditions satisfied.
+Successful optimization! Exit flag = 1. First order optimality conditions satisfied.
+Successful optimization! Exit flag = 1. First order optimality conditions satisfied.
+Successful optimization! Exit flag = 2. Change in X too small.
+Successful optimization! Exit flag = 1. First order optimality conditions satisfied.
+Successful optimization! Exit flag = 1. First order optimality conditions satisfied.
+Successful optimization! Exit flag = 2. Change in X too small.
+Successful optimization! Exit flag = 2. Change in X too small.
+Successful optimization! Exit flag = 1. First order optimality conditions satisfied.
+Successful optimization! Exit flag = 2. Change in X too small.
+Successful optimization! Exit flag = 1. First order optimality conditions satisfied.
+Successful optimization! Exit flag = 1. First order optimality conditions satisfied.
+Successful optimization! Exit flag = 2. Change in X too small.
+Successful optimization! Exit flag = 1. First order optimality conditions satisfied.
+Successful optimization! Exit flag = 2. Change in X too small.
+Successful optimization! Exit flag = 2. Change in X too small.
+Successful optimization! Exit flag = 2. Change in X too small.
+Successful optimization! Exit flag = 1. First order optimality conditions satisfied.
+Successful optimization! Exit flag = 2. Change in X too small.
+Successful optimization! Exit flag = 2. Change in X too small.
+Successful optimization! Exit flag = 1. First order optimality conditions satisfied.
+Successful optimization! Exit flag = 1. First order optimality conditions satisfied.
+Successful optimization! Exit flag = 1. First order optimality conditions satisfied.
+Successful optimization! Exit flag = 1. First order optimality conditions satisfied.
+Successful optimization! Exit flag = 2. Change in X too small.
+Successful optimization! Exit flag = 2. Change in X too small.
+Successful optimization! Exit flag = 1. First order optimality conditions satisfied.
+Successful optimization! Exit flag = 2. Change in X too small.
+Successful optimization! Exit flag = 1. First order optimality conditions satisfied.
+Successful optimization! Exit flag = 2. Change in X too small.
+Successful optimization! Exit flag = 1. First order optimality conditions satisfied.
+Successful optimization! Exit flag = 2. Change in X too small.
+Successful optimization! Exit flag = 1. First order optimality conditions satisfied.
+Successful optimization! Exit flag = 1. First order optimality conditions satisfied.
+Successful optimization! Exit flag = 2. Change in X too small.
+Successful optimization! Exit flag = 2. Change in X too small.
+Successful optimization! Exit flag = 2. Change in X too small.
+Successful optimization! Exit flag = 2. Change in X too small.
+Successful optimization! Exit flag = 1. First order optimality conditions satisfied.
+Successful optimization! Exit flag = 2. Change in X too small.
+Successful optimization! Exit flag = 1. First order optimality conditions satisfied.
+</pre><img vspace="5" hspace="5" src="SweepingAnalysis_05.png" style="width:560px;height:420px;" alt=""> <p>
+<p>The final results can be plotted as well</p>
+</p><pre class="codeinput">mySensitivityOptimizer.plotOutput(<span class="string">'inductorSensitivity.outputData.geometric.weight'</span>);
+</pre><img vspace="5" hspace="5" src="SweepingAnalysis_06.png" style="width:560px;height:420px;" alt=""> <p>
+<p>The axes are not very lisible and can be modified manually.</p>
+</p><pre class="codeinput">xlabel(<span class="string">'Switching frequency [Hz]'</span>);
+ylabel(<span class="string">'Maximal temperature [&deg;C]'</span>);
+zlabel(<span class="string">'Mass [kg]'</span>);
+</pre><img vspace="5" hspace="5" src="SweepingAnalysis_07.png" style="width:560px;height:420px;" alt=""> <p>
+<p>We show as well the optimal combination of parameters and the optimal value of the objective function
+at this point</p>
+</p><pre class="codeinput">x
+fval
+</pre><pre class="codeoutput">
+x =
+
+  1&times;3 cell array
+
+    '500F PC'    [50000]    [100]
+
+
+fval =
+
+    1.5111
+
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Sweeping Analysis
+% <html>
+% <p>In some cases, the designer wants to know what is the impact of changing
+% a certain parameter in the design or what is the impact in the final
+% solution if a certain design constraint is modified</p>
+% <h2> Inputs sweeping</h2>
+% <p>Once the model is defined, the user might want to know what is the
+% impact in some parameters when one the inputs is modified</p>
+% <p>The tool to perform this kind of sweep analysis is called
+% <i>SweepTool.SweepTool</i>.
+% </html>
+mySweepTool = SweepTool.SweepTool;
+
+%%
+% <html>
+% <p>Then we add the element that we want to look the sensitivity. In this
+% case we will look the variation of an Inductor.</p>
+% </html>
+myInductor = Comp3d.InductorCustomEI('name','inductorSweep');
+mySweepTool.addElement(myInductor);
+
+%%
+% <html>
+% <p>We select the variables that we are going to change to look the sensibility.
+% In this case, the variables we are going to change are:</p>
+% <ul>
+%   <li>Magnetic materials (3C85,3C90)</li>
+%   <li>Winding materials (Copper, Aluminium)</li>
+%   <li>Leg width</li>
+% </ul>
+% <p>The command to add the sweeping variable is 
+% <i>SweepTool variable</i>.(<i>Name of the component.Name of the variable</i>,<i>vector(numeric)
+% or cell(char) values to vary</i>,<i>units</i>)</p>
+% </html>
+mySweepTool.addVariable( 'inductorSweep.materials.magneticCore', {'3C85 Philips(20-100kHz)','3C90 TM(25-200kHz)'}, 'core');
+mySweepTool.addVariable( 'inductorSweep.materials.electricConductor', {'Copper','Aluminium'}, 'conductor');
+mySweepTool.addVariable( 'inductorSweep.dimensions.legWidth', 0.010:0.02:0.020, 'meter');
+
+%% 
+% <html>
+% <p>Once the sweep variables have been determined we need to determine which are
+% the variables we want to display the impact. The command to add the the
+% outputs is <i>Sweep Tool variable</i>.addOuput(<i>name of the
+% output</i>,<i>units</i>)</p>
+% <p>In this case the chosen outputs to plot are the mass and the inductance value</p>
+% </html>
+mySweepTool.addOutput( 'inductorSweep.outputData.geometric.weight', 'Kg');
+mySweepTool.addOutput( 'inductorSweep.modelParameters.electric.Lmodel.val', 'H');
+
+%%
+% <html>
+% <p>Once all the input/output variables have been determined we proceed to
+% the evaluation. The instruction is <i>SweepTool
+% variable</i>.evaluate.</p>
+% </html>
+mySweepTool.evaluate;
+
+%%
+% <html>
+% <p>Then, we can perform various plots to show the sensibility. In these
+% plots, we can show the sensibility up to three different variables. The command
+% to perform this operation is <i>Sweep Tool variable</i>.plotOutput(<i>name of the component.name of
+% the output</i>,<i>name of input </i>,...)</p>
+% <p>For example, let us plot the inductance value as function of the
+% electricConductor when we chose a 3C85 magnetic core and
+% legWidth of 0.02</p>
+% </html>
+mySweepTool.plotOutput('inductorSweep.modelParameters.electric.Lmodel.val','myInductor.materials.magneticCore',{'3C85 Philips(20-100kHz)'},...
+                                                   'myInductor.dimensions.legWidth',0.02);
+                                               
+%%
+% <html>
+% <p>We can plot as well the mass as a function of all the inputs (up to
+% 3)</p>
+% </html>
+mySweepTool.plotOutput('inductorSweep.outputData.geometric.weight');
+
+%%
+% <html>
+% <h2>Sweeping analysis using a circuit solver</h2>
+% <p>In some case we might want to plot using a circuit solver, where a
+% circuit element parameter changes.</p>
+% <p>For example, let us consider we want to look what is the impact in the
+% losses when the switching frequency of a buck converter is changed.</p>
+% </html>
+mySweepTool = SweepTool.SweepTool;                                                   
+myInductor = Comp3d.InductorCustomEI('name','inductorSweepCircuit');
+
+%%
+% <html>
+% <p>We describe the circuit.</p>
+% </html>
+circuit = Ckt.CktComposite();
+n = circuit.createNode(4);
+circuit.addGnd(n(2));
+circuit.addCkt(Vdc(200),{n{1},n{2}});
+dcdcConvert = Chopper();
+dcdcConvert.modul.fCar = 10e3;
+dcdcConvert.opPoint.alphaBuck = 0.5;
+circuit.addCkt(dcdcConvert,{n{1},n{3},n{2}});
+circuit.addCkt(myInductor.electricModel,{n{3},n{4}});
+circuit.addCkt(Resistor(1),{n{4},n{2}});
+
+
+%%
+% <html>
+% <p>The excitation object is set according to our particular problem</p>
+% </html>
+myInductor.excitationsElectricAnalytic = AnalyticalExcitation.InductorExcitation;
+myInductor.excitationsElectricAnalytic.vHv = 200;
+myInductor.excitationsElectricAnalytic.vLv = 100;
+myInductor.excitationsElectricAnalytic.iDc = 100;
+myInductor.excitationsElectricAnalytic.fSw = 20e3;
+myInductor.excitationsElectricAnalytic.nSample = 1000;
+
+%%
+% <html>
+% <p>We add the inductor to the sweep tool.</p>
+% </html>
+mySweepTool.addElement(myInductor);
+
+
+%%
+% <html>
+% <p>And we determine the inputs, the outputs and the elements.</p>
+% </html>
+mySweepTool.addVariable( 'inductorSweepCircuit.materials.electricConductor', {'Copper','Aluminium'}, 'conductor');
+mySweepTool.addVariable( 'inductorSweepCircuit.materials.magneticCore', {'3C85 Philips(20-100kHz)','3C90 TM(25-200kHz)'}, 'core');
+mySweepTool.addVariable( 'inductorSweepCircuit.excitationsElectricAnalytic.fSw', 10e3:10e3:100e3, 'Hz');
+mySweepTool.addOutput( 'inductorSweepCircuit.outputData.thermal.losses','W');
+
+
+
+%%
+% <html>
+% <p>Once all the input/output variables have been determined we proceed to
+% the evaluation.</p>
+% </html>
+mySweepTool.evaluate;
+
+%%
+% <html>
+% <p>And we plot the losses for the 3C85 material.</p>
+% </html>
+mySweepTool.plotOutput('inductorSweepCircuit.outputData.thermal.losses','inductorSweepCircuit.materials.magneticCore',{'3C85 Philips(20-100kHz)'});
+
+%%
+% <html>
+% <p>Or just for a frequency of 20 kHz.</p>
+% </html>
+mySweepTool.plotOutput('inductorSweepCircuit.outputData.thermal.losses','inductorSweepCircuit.materials.magneticCore',{'3C85 Philips(20-100kHz)'},...
+                       'inductorSweepCircuit.excitationsElectricAnalytic.fSw',20e3);
+
+%%
+% <html>
+% <h2> Optimization parameter sweeping</h2>
+% <p>In the previous case we looked what was the impact of the switching frequency for a certain
+% inductor. However, the user might want to know what is the impact in the final mass when performing
+% an optimization and a variation of the switching frequency.</p>
+% <p>The class that regroups the optimization methods and the sweeping tool
+% functionalities is <i>SweepTool.SweepTool</i></p>
+% <p>For example, let us see the impact on the optimal component mass as
+% function of the switching frequency. First we create the class and add it as an optimization.</p>
+% </html>
+mySensitivityOptimizer = OptimProblem.SensitivityOptimizer();
+myInductor = Comp3d.InductorCustomEI('name','inductorSensitivity');
+mySensitivityOptimizer.addComp3d(myInductor);
+
+%%
+% <html>
+% <p>We create the analytical circuit and add it to the optimization</p>
+% </html>
+myInductor.excitationsElectricAnalytic = AnalyticalExcitation.InductorExcitation;
+myInductor.excitationsElectricAnalytic.vHv = 200;
+myInductor.excitationsElectricAnalytic.vLv = 100;
+myInductor.excitationsElectricAnalytic.iDc = 100;
+myInductor.excitationsElectricAnalytic.fSw = 20e3;
+myInductor.excitationsElectricAnalytic.nSample = 1000;
+
+%%
+% <html>
+% <p>In this case, the parameters that vary are:</p>
+% <ul>
+%   <li>Core Material : N88 (Ferrite), 500F PC (Nanocrystallin)</li>
+%   <li>Switching frequency: [10kHz,50kHz]</li>
+%   <li>Maximal temperature : [80,100]</i>
+% </ul>
+% <p>And the output is the mass of the inductor.</p>
+% </html>
+mySensitivityOptimizer.addElement(myInductor);
+
+mySensitivityOptimizer.addVariable( 'inductorSensitivity.materials.magneticCore', {'N88','500F PC'}, 'core');
+mySensitivityOptimizer.addVariable( 'inductorSensitivity.excitationsElectricAnalytic.fSw', 10e3:10e3:50e3, 'Hz');
+mySensitivityOptimizer.addVariable( 'inductorSensitivity.constraints.temperatureMax', 80:5:100, '°C');
+mySensitivityOptimizer.addOutput( 'inductorSensitivity.outputData.geometric.weight','kg');
+
+%%
+% <html>
+% <p>We can set the optimization criteria and the algorithm as in any optimization problem</p>
+% </html>
+mySensitivityOptimizer.criteria = {'mass'};
+mySensitivityOptimizer.optimAlgoType = 'GradientDescent';
+%%
+% <html>
+% <p>The sensitivity analysis is launched, in this case the sensitivity parameters that give the optimal mass are given</p>
+% </html>
+mySensitivityOptimizer.optimAlgo.options.Display = 'off';
+[x, fval] = mySensitivityOptimizer.evaluate;
+%%
+% <html>
+% <p>The final results can be plotted as well</p>
+% </html>
+mySensitivityOptimizer.plotOutput('inductorSensitivity.outputData.geometric.weight');
+
+%%
+% <html>
+% <p>The axes are not very lisible and can be modified manually.</p>
+% </html>
+xlabel('Switching frequency [Hz]');
+ylabel('Maximal temperature [°C]');
+zlabel('Mass [kg]');
+
+%%
+% <html>
+% <p>We show as well the optimal combination of parameters and the optimal value of the objective function
+% at this point</p>
+% </html>
+x
+fval
+##### SOURCE END #####
+--></body></html>

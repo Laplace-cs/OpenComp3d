@@ -1,0 +1,332 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Set Excitations procedure</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-07-05"><meta name="DC.source" content="SetExcitations.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Set Excitations procedure</h1><p>
+<h2>Excitations</h2>
+<p>The excitations can be defined by two differents ways:</p>
+<lu>
+<li> <b>Analytic</b>: in some cases the user can know the excitations of the
+              component (For example if the whole system is known) or can
+              determine the waveforms making some hypothesis</li>
+<li> <b>Simulation</b>: the components posses as well a simulation model that is
+                interpreted by a frequency solver called OOTEE. The
+                principle of operation is presented in the following
+                figure:</li>
+</lu>
+<br></br>
+  <img src="../Sources/Images/SimulationSolver.png" alt="Simulation Solver Icon"
+  style="width:100%"; display="block"; margin="auto"> </img>
+<h2>Solverless design of a component with a known impedance</h2>
+<p>When a converter has been simulated with a conventional simulation
+software and the user wants to study a specific component (determine its
+losses, temperature, etc) using OpenComp3d it is possible to export a
+current or voltage waveform from the simulation and see how the component
+reacts.</p>
+<p>It is also possible to insert the corresponding OpenComp3d component
+in a loop to design the component (determine its weight, size, cost,
+losses...) by imposing the value of the impedance as a constraint and
+maintaining the initial excitation determined by the simulation software
+through all the iterations.</p>
+<p>For the example, we will consider the inductor at the output of the DC-DC
+converter as shown in the figure below.</p>
+<img src="../Sources/Images/BuckConverterExcitations.png" alt="Optimization Icon"
+ style="width:70%"; display="block"; margin="auto"> </img>
+<p>We suppose that all the system values are
+known (therefore the inductance value) and a designer has performed a simulation
+using classical time-domain solvers
+(PSIM(TM),PLECS(TM),SABER(TM),...).</p>
+</p><pre class="codeinput">myInd = Comp3d.InductorCustomEI;
+myInd.computeModelParameters;
+</pre><p>
+We load for example a file containing a waveform variable
+"myInductorEIexcitationData"
+</p><pre class="codeinput">load <span class="string">InductorExcitationsExample.mat</span>
+subplot(2,1,1);
+plot(time,voltage);
+xlabel(<span class="string">'Time [s]'</span>);
+ylabel(<span class="string">'Voltage [A]'</span>);
+subplot(2,1,2)
+plot(time,current);
+xlabel(<span class="string">'Time [s]'</span>);
+ylabel(<span class="string">'Current [A]'</span>);
+</pre><img vspace="5" hspace="5" src="SetExcitations_01.png" style="width:560px;height:420px;" alt=""> <p>
+Then we load the excitations using the command
+<i>variable</i>|.setExcitations()| Ex.
+</p><pre class="codeinput">myInd.setExcitations(<span class="string">'time'</span>,time,<span class="keyword">...</span>
+                      <span class="string">'current'</span>,current,<span class="keyword">...</span>
+                      <span class="string">'voltage'</span>,voltage);
+</pre><p>
+The component posses as well a built-in method to display the excitations
+</p><pre class="codeinput">myInd.drawExcitations;
+</pre><img vspace="5" hspace="5" src="SetExcitations_02.png" style="width:560px;height:420px;" alt=""> <p>
+<h2>Open design with the analytic solver</h2>
+<p>We may want to design a component to be used in a circuit with a known
+topology, but leave as many degrees of freedom to allow finding the best
+solution. This is typically the case when we want to design the smoothing
+inductor of a buck converter; the voltage applied to the inductor is
+known, but the current waveform depends on the value of the inductor and
+it is not easy to guess which value of inductor or ripple gives the
+smallest magnetic component.</p>
+<p>Therefore we should allow varying the inductor throughout the
+optimization process which requires determining the current waveform
+within OpenComp3d at each iteration. An internal analytic solver is provided
+for this purpose.</p>
+<p>For the buck converter example, the analytic solver to determine the
+waveforms of the output inductor has been developped in
+<i>AnalyticalExcitation.InductorExcitation</i></p>
+</p><pre class="codeinput">myInductor = Comp3d.InductorCustomEI(<span class="string">'nTurns'</span>,15,<span class="string">'record'</span>,true,<span class="string">'airGap'</span>,5.37e-4,<span class="string">'level'</span>,1);
+myInductor.excitationsElectricAnalytic = AnalyticalExcitation.InductorExcitation;
+myInductor.excitationsElectricAnalytic.vHv = 100;
+myInductor.excitationsElectricAnalytic.vLv = 50;
+myInductor.excitationsElectricAnalytic.iDc = 10;
+myInductor.excitationsElectricAnalytic.fSw = 10e3;
+myInductor.excitationsElectricAnalytic.nSample = 1000;
+myInductor.drawExcitations();
+</pre><img vspace="5" hspace="5" src="SetExcitations_03.png" style="width:560px;height:420px;" alt=""> <p>
+<p>As shown, the waveforms are automatically calculated</p>
+</p><p>
+<h2>A general solver for OpenComp3d</h2>
+For the example, we will consider the inductor at the output of the DC-DC
+converter as shown in the figure above. To get more information about
+object creation refer <a href="CreateComp3dElement.html"> here</a>. To get more
+information about the description of the circuit go here (A COMPLETER)
+As it is shown the inductor object is inserted between the nodes 3 and 4
+using the netlist description. To store the automatically the waveform of
+the current the "record" property of the object is set to |true|
+</p><pre class="codeinput">myInd = Comp3d.InductorCustomEI(<span class="string">'nTurns'</span>,15,<span class="string">'record'</span>,true,<span class="string">'airGap'</span>,5.37e-4,<span class="string">'level'</span>,1);
+myInd.computeModelParameters;
+circuit = Ckt.CktComposite();
+n = circuit.createNode(4);
+circuit.addGnd(n(2));
+circuit.addCkt(Vdc(100),{n{1},n{2}});
+convert = Chopper();
+convert.modul.fCar = 10e3;
+convert.opPoint.alphaBuck = 0.5;
+circuit.addCkt(convert,{n{1},n{3},n{2}});
+circuit.addCkt(myInd.electricModel,{n{3},n{4}});
+circuit.addCkt(Capacitor(100e-6),{n{4},n{2}});
+circuit.addCkt(Resistor(5),{n{4},n{2}});
+solver = ConvertSystSolver;
+results = solver.simulate(circuit);
+</pre><pre class="codeoutput">Warning: SimulationSolver.Facture: Ootee by default 
+Warning: The electric model of Comp3d.InductorCustomEI: has changed 
+</pre><p>
+Once the simulation has been solved the excitations are loaded into the
+object, the waveforms are loaded using the instructions <i>variable1</i> =
+<i>variable2</i>|.getSimulationData()| & <i>variable2</i>|.setExcitations|(<i>variable1</i>)
+Ex.
+</p><pre class="codeinput">data = myInd.getSimulationData;
+myInd.setExcitations(data);
+</pre><p>Once again the excitations can be displayed</p><pre class="codeinput">myInd.drawExcitations;
+</pre><img vspace="5" hspace="5" src="SetExcitations_04.png" style="width:560px;height:420px;" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Set Excitations procedure
+% <html>
+% <h2>Excitations</h2> 
+% <p>The excitations can be defined by two differents ways:</p>
+% <lu>
+% <li> <b>Analytic</b>: in some cases the user can know the excitations of the
+%               component (For example if the whole system is known) or can
+%               determine the waveforms making some hypothesis</li>
+% <li> <b>Simulation</b>: the components posses as well a simulation model that is
+%                 interpreted by a frequency solver called OOTEE. The
+%                 principle of operation is presented in the following
+%                 figure:</li>
+% </lu>
+% <br></br>
+%   <img src="../Sources/Images/SimulationSolver.png" alt="Simulation Solver Icon"
+%   style="width:100%"; display="block"; margin="auto"> </img>
+% <h2>Solverless design of a component with a known impedance</h2>
+% <p>When a converter has been simulated with a conventional simulation
+% software and the user wants to study a specific component (determine its
+% losses, temperature, etc) using OpenComp3d it is possible to export a
+% current or voltage waveform from the simulation and see how the component
+% reacts.</p>
+% <p>It is also possible to insert the corresponding OpenComp3d component
+% in a loop to design the component (determine its weight, size, cost,
+% losses...) by imposing the value of the impedance as a constraint and
+% maintaining the initial excitation determined by the simulation software
+% through all the iterations.</p>
+% <p>For the example, we will consider the inductor at the output of the DC-DC
+% converter as shown in the figure below.</p>
+% <img src="../Sources/Images/BuckConverterExcitations.png" alt="Optimization Icon"
+%  style="width:70%"; display="block"; margin="auto"> </img>
+% <p>We suppose that all the system values are 
+% known (therefore the inductance value) and a designer has performed a simulation
+% using classical time-domain solvers
+% (PSIM(TM),PLECS(TM),SABER(TM),...).</p>
+% </html>
+myInd = Comp3d.InductorCustomEI;
+myInd.computeModelParameters;
+
+%%
+% <html>
+% We load for example a file containing a waveform variable
+% "myInductorEIexcitationData"
+% </html>
+load InductorExcitationsExample.mat
+subplot(2,1,1);
+plot(time,voltage);
+xlabel('Time [s]');
+ylabel('Voltage [A]');
+subplot(2,1,2)
+plot(time,current);
+xlabel('Time [s]');
+ylabel('Current [A]');
+
+%% 
+% <html>
+% Then we load the excitations using the command
+% <i>variable</i>|.setExcitations()| Ex.
+% </html>
+myInd.setExcitations('time',time,...
+                      'current',current,...
+                      'voltage',voltage);
+
+%%
+% <html>
+% The component posses as well a built-in method to display the excitations
+% </html>
+myInd.drawExcitations;
+
+%%
+% <html>
+% <h2>Open design with the analytic solver</h2>
+% <p>We may want to design a component to be used in a circuit with a known 
+% topology, but leave as many degrees of freedom to allow finding the best
+% solution. This is typically the case when we want to design the smoothing
+% inductor of a buck converter; the voltage applied to the inductor is
+% known, but the current waveform depends on the value of the inductor and
+% it is not easy to guess which value of inductor or ripple gives the
+% smallest magnetic component.</p>
+% <p>Therefore we should allow varying the inductor throughout the 
+% optimization process which requires determining the current waveform 
+% within OpenComp3d at each iteration. An internal analytic solver is provided 
+% for this purpose.</p> 
+% <p>For the buck converter example, the analytic solver to determine the 
+% waveforms of the output inductor has been developped in 
+% <i>AnalyticalExcitation.InductorExcitation</i></p>
+% </html>
+myInductor = Comp3d.InductorCustomEI('nTurns',15,'record',true,'airGap',5.37e-4,'level',1);
+myInductor.excitationsElectricAnalytic = AnalyticalExcitation.InductorExcitation;
+myInductor.excitationsElectricAnalytic.vHv = 100;
+myInductor.excitationsElectricAnalytic.vLv = 50;
+myInductor.excitationsElectricAnalytic.iDc = 10;
+myInductor.excitationsElectricAnalytic.fSw = 10e3;
+myInductor.excitationsElectricAnalytic.nSample = 1000;
+myInductor.drawExcitations();
+
+%% 
+% <html>
+% <p>As shown, the waveforms are automatically calculated</p>
+% </html>
+
+%%
+% <html>
+% <h2>A general solver for OpenComp3d</h2>
+% For the example, we will consider the inductor at the output of the DC-DC
+% converter as shown in the figure above. To get more information about
+% object creation refer <a href="CreateComp3dElement.html"> here</a>. To get more
+% information about the description of the circuit go here (A COMPLETER)
+% As it is shown the inductor object is inserted between the nodes 3 and 4
+% using the netlist description. To store the automatically the waveform of
+% the current the "record" property of the object is set to |true|
+% </html>
+myInd = Comp3d.InductorCustomEI('nTurns',15,'record',true,'airGap',5.37e-4,'level',1);
+myInd.computeModelParameters;
+circuit = Ckt.CktComposite();
+n = circuit.createNode(4);
+circuit.addGnd(n(2));
+circuit.addCkt(Vdc(100),{n{1},n{2}});
+convert = Chopper();
+convert.modul.fCar = 10e3;
+convert.opPoint.alphaBuck = 0.5;
+circuit.addCkt(convert,{n{1},n{3},n{2}});
+circuit.addCkt(myInd.electricModel,{n{3},n{4}});
+circuit.addCkt(Capacitor(100e-6),{n{4},n{2}});
+circuit.addCkt(Resistor(5),{n{4},n{2}});
+solver = ConvertSystSolver;
+results = solver.simulate(circuit);
+
+
+%%
+% <html>
+% Once the simulation has been solved the excitations are loaded into the
+% object, the waveforms are loaded using the instructions <i>variable1</i> =
+% <i>variable2</i>|.getSimulationData()| & <i>variable2</i>|.setExcitations|(<i>variable1</i>) 
+% Ex.
+% </html>
+data = myInd.getSimulationData;
+myInd.setExcitations(data);
+
+%%
+% Once again the excitations can be displayed
+myInd.drawExcitations;
+
+##### SOURCE END #####
+--></body></html>

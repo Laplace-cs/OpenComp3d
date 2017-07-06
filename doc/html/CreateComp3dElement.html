@@ -1,0 +1,444 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Creation of a Comp3d Component</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-07-05"><meta name="DC.source" content="CreateComp3dElement.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Creation of a Comp3d Component</h1><p>
+In this example we will illustrate the main structure of the components
+under the OpenComp3d framework. To illustrate the class InductorCustomEI
+will be employed.
+<br></br>
+<b>IMPORTANT: All the variables/parameters ... are given in the
+  International System (SI) units.</b>
+<br></br>
+More information about the InductorCustomEI class can be found here
+(COMPLETER)
+<br></br>
+<h2> Component creation </h2>
+To create a class the syntax is the following
+<i>variable</i>= Comp3d. <i>name of the class</i>   Ex.
+</p><pre class="codeinput">myInd = Comp3d.InductorCustomEI;
+</pre><p>
+As it is shown the component posses by default a series of
+<i>properties</i>
+and <i>methods</i>. To show them type properties(<i> variable name </i>)
+</p><pre class="codeinput">properties(myInd)
+</pre><pre class="codeoutput">
+Properties for class Comp3d.InductorCustomEI:
+
+    dimensions
+    materials
+    materialsOptions
+    shape
+    shapeOptions
+    modelParameters
+    excitations
+    excitationsElectricAnalytic
+    storeDataFlag
+    storedData
+    name
+    level
+    electricModelPort
+    electricModel
+    thermalModel
+    costModel
+    outputData
+    constraints
+    record
+    outputFunctionList
+    freedomDegrees
+
+</pre><p>
+All the components in the library posses a series of properties that
+<b>ALL</b> the components must define. These are:
+</p><p>
+  <table>
+  <tr><th>Property</th><th>Description</th></tr>
+  <tr><td><i>name</i></td><td>Name of the object</td></tr>
+  <tr><td><i>dimensions</i></td> <td>Contains the different physical dimensions
+  that define the component</td></tr>
+  <tr><td><i>materials</i></td> <td>Constains the different properties from the materials
+  (conductor, magnetic, dielectric...)</td></tr>
+  <tr><td><i>shape</i></td> <td>Contains all the parameters relative to the
+   different models of the components (electric, thermal...)</td></tr>
+  <tr><td><i>modelParameters</i></td> <td>Contains all the parameters relative to the
+   different models of the components (electric, thermal...)</td></tr>
+  <tr><td><i>outputData</i></td> <td>Contains all the important data obtained from the
+   parameters of the components and the excitations. For example,
+   the temperature, losses...</td></tr>
+  </table>
+</p><p>
+All these properties have normally a default value, however this can be
+changed or defined at the begining.
+To know the different variables of the component we can refer to the
+document to do so type |help| <i>class of the object</i>. Ex:
+</p><pre class="codeinput">help <span class="string">Comp3d.InductorCustomEI</span>
+</pre><pre class="codeoutput">  InductorCustomEI is the class that models an inductor with an E-I core
+ 
+  Input arguments can be given as parameters:
+  exp: Inductor('name, name, 'width', width, 'nTurns', turnNumber)
+ 
+  InductorCustomEI inputs
+  name                  - name
+  legWidth              - leg width (m)
+  legThickness          - leg thickness (m)
+  interLayerSpace       - distance between consecutive layers (m)
+  interTurnSpace        - distance between consecutive turns (m)
+  magneticCore          - magnetic Material
+  nLayers               - number of Layers
+  nTurns                - number of turns
+  electricConductor     - electric conductor material
+  gapAir                - Airgap (entrefer) (m)
+  conductorShape          - type of bobinage {round,rectangular}
+  diameter              - wire diameter (m) (if conductorShape = round)
+  nStrands              - number of strands (if conductorShape = round)
+  conductorWidth        - conductor Width (m) (if conductorShape =
+                           rectangular)
+  conductorHeight       - conductor Height (m) (if conductorShape =
+                           rectangular)
+ 
+  &lt;a href="matlab:help Comp3d.Inductor"&gt;Comp3d.Inductor &lt;/a&gt; for other properties / methods
+ 
+  Copyright (C)  2017, LAPLACE, Universit&eacute; de Toulouse, CNRS, INPT, UPS, France.
+  This software is released under a free software license. A copy of this
+  license is available here: http://www.github.xxxx.
+
+    Reference page in Doc Center
+       doc Comp3d.InductorCustomEI
+
+
+</pre><p>
+In the help for example we can see that <i>legWidth</i> is an input of the
+model. To define this input at the creation of the component we type
+</p><pre class="codeinput">myInd = Comp3d.InductorCustomEI(<span class="string">'legWidth'</span>,1.6e-2);
+</pre><p>
+To verify that the value has been declared we type
+</p><pre class="codeinput">myInd.dimensions
+</pre><pre class="codeoutput">
+ans = 
+
+  struct with fields:
+
+               legWidth: 0.0160
+           legThickness: 0.0200
+                 airGap: 3.0000e-04
+    windingCoreDistance: 6.0000e-04
+         interTurnSpace: 1.0000e-04
+                 nTurns: 8
+         conductorWidth: 1.0000e-03
+        conductorHeight: 0.0300
+
+</pre><p>
+As the user can see the value of the property <i>legWidth</i> was set to
+0.016 and the rest are set to their default values. If the the user
+wants to update this value to 1e-2 for example he can type
+</p><pre class="codeinput">myInd.dimensions.legWidth = 1e-2;
+</pre><p>
+and then again see the values
+</p><pre class="codeinput">myInd.dimensions.legWidth
+</pre><pre class="codeoutput">
+ans =
+
+    0.0100
+
+</pre><p>
+The value was succesfully changed!!
+</p><p>
+<h2>Component methods</h2>
+To show the methods of the component type |methods|(<i>variable name</i>)
+</p><pre class="codeinput">methods(myInd)
+</pre><pre class="codeoutput">
+Methods for class Comp3d.InductorCustomEI:
+
+InductorCustomEI                   femmRAcFacteurComputeCompensation  
+buildElectricModel                 getDimensionsAreaProductFromL      
+computeModelParameters             getSimulationData                  
+computeOutputData                  ooteeBuildElectricModelLv1         
+computeSkinDepth                   ooteeBuildElectricModelLv2         
+computeTotalValue                  ooteeGetSimulationDataLv1          
+copy                               ooteeGetSimulationDataLv2          
+copyWithReference                  rACFactorRoundSkin                 
+displayConstraints                 rAcFactorRectangular               
+displayInformation                 rAcFactorRound                     
+drawComponent                      resetModels                        
+drawCoreCustomEI                   setExcitations                     
+drawExcitations                    setPointAsInitialOpti              
+drawRectangularCustomEI            showObject                         
+drawRoundCustomEI                  updateObj                          
+femmCompute                        validateFEMM                       
+femmDraw                           writeComponent                     
+femmDrawCoreE                      writeFile                          
+femmDrawCoreI                      
+
+Static methods:
+
+correctValues                      
+
+Call "methods('handle')" for methods of Comp3d.InductorCustomEI inherited from handle.
+
+</pre><p>
+All the components in the library posses a series of methods for
+<b>ALL</b> the components. These are:
+</p><p>
+  <table>
+  <tr><th>Method</th><th>Description</th></tr>
+  <tr><td><i>displayInformation</i></td><td>Displays the different parameters of the component</td></tr>
+  <tr><td><i>drawComponent</i></td> <td>Draws the component in a 3D plot</td></tr>
+  <tr><td><i>computeModelParameters</i></td> <td>Computes the different parameters of the
+      models (electric,thermal...) of the component</td></tr>
+  <tr><td><i>setExcitations</i></td> <td>Sets the excitations of the components.
+  More information about excitations can be found <a  href="SetExcitations.html"> here </a> </td></tr>
+  <tr><td><i>computeOutputData</i></td> <td>Computes the different output data (losses,
+  temperatures...) of the components. These requires that the excitations
+  were defined before</td></tr>
+  </table>
+</p><p>
+In the example:
+</p><pre class="codeinput">myInd.computeModelParameters;
+myInd.displayInformation;
+</pre><pre class="codeoutput">
+====================================================
+Information of  [Comp3d.InductorCustomEI]
+----------------------------------------------------
+Shape
+Dimensions
+                      legWidth:   0.01
+                  legThickness:   0.02
+                        airGap: 0.0003
+           windingCoreDistance: 0.0006
+                interTurnSpace: 0.0001
+                        nTurns:      8
+                conductorWidth:  0.001
+               conductorHeight:   0.03
+----------------------------------------------------
+Materials
+             electricConductor: Copper
+            electricInsulation: UPETS
+                  magneticCore: 3C90 TM(25-200kHz)
+----------------------------------------------------
+Geometric Data
+          Manufacturing Volume: 0.1182 l
+                        Weight: 0.4907 Kg
+----------------------------------------------------
+Cost Data
+                         Total: $   0.00
+----------------------------------------------------
+Optimization Constraints
+                temperatureMax:     80
+                      BsatRate:   0.95
+----------------------------------------------------
+Electric Parameters
+                    Inductance: 4.954e-05 H
+                 DC resistance: 0.000539 Ohm
+----------------------------------------------------
+Output data (losses, temperature...) not calculated yet
+====================================================
+</pre><pre class="codeinput">myInd.drawComponent;
+</pre><img vspace="5" hspace="5" src="CreateComp3dElement_01.png" style="width:560px;height:420px;" alt=""> <p>
+</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Creation of a Comp3d Component
+% <html>
+% In this example we will illustrate the main structure of the components
+% under the OpenComp3d framework. To illustrate the class InductorCustomEI
+% will be employed.
+% <br></br>
+% <b>IMPORTANT: All the variables/parameters ... are given in the
+%   International System (SI) units.</b>
+% <br></br>
+% More information about the InductorCustomEI class can be found here
+% (COMPLETER)
+% <br></br>
+% <h2> Component creation </h2>
+% To create a class the syntax is the following
+% <i>variable</i>= Comp3d. <i>name of the class</i>   Ex. 
+% </html>
+myInd = Comp3d.InductorCustomEI;
+
+%% 
+% <html>
+% As it is shown the component posses by default a series of
+% <i>properties</i>
+% and <i>methods</i>. To show them type properties(<i> variable name </i>)
+% </html>
+properties(myInd)
+
+%%
+% <html>
+% All the components in the library posses a series of properties that
+% <b>ALL</b> the components must define. These are:
+% </html>
+
+%%
+% <html>
+%   <table>
+%   <tr><th>Property</th><th>Description</th></tr>
+%   <tr><td><i>name</i></td><td>Name of the object</td></tr>
+%   <tr><td><i>dimensions</i></td> <td>Contains the different physical dimensions
+%   that define the component</td></tr>
+%   <tr><td><i>materials</i></td> <td>Constains the different properties from the materials
+%   (conductor, magnetic, dielectric...)</td></tr>
+%   <tr><td><i>shape</i></td> <td>Contains all the parameters relative to the
+%    different models of the components (electric, thermal...)</td></tr>
+%   <tr><td><i>modelParameters</i></td> <td>Contains all the parameters relative to the
+%    different models of the components (electric, thermal...)</td></tr>
+%   <tr><td><i>outputData</i></td> <td>Contains all the important data obtained from the
+%    parameters of the components and the excitations. For example,
+%    the temperature, losses...</td></tr>
+%   </table>
+% </html>
+
+
+%%
+% <html>
+% All these properties have normally a default value, however this can be
+% changed or defined at the begining.
+% To know the different variables of the component we can refer to the
+% document to do so type |help| <i>class of the object</i>. Ex:
+% </html>
+help Comp3d.InductorCustomEI
+
+%%
+% <html>
+% In the help for example we can see that <i>legWidth</i> is an input of the
+% model. To define this input at the creation of the component we type
+% </html>
+myInd = Comp3d.InductorCustomEI('legWidth',1.6e-2);
+
+%%
+% <html>
+% To verify that the value has been declared we type
+% </html>
+myInd.dimensions
+
+%%
+% <html>
+% As the user can see the value of the property <i>legWidth</i> was set to
+% 0.016 and the rest are set to their default values. If the the user
+% wants to update this value to 1e-2 for example he can type
+% </html>
+myInd.dimensions.legWidth = 1e-2;
+
+%%
+% <html>
+% and then again see the values
+% </html>
+myInd.dimensions.legWidth
+
+%%
+% <html>
+% The value was succesfully changed!!
+% </html>
+
+%% 
+% <html>
+% <h2>Component methods</h2>
+% To show the methods of the component type |methods|(<i>variable name</i>)
+% </html>
+methods(myInd)
+
+%% 
+% <html>
+% All the components in the library posses a series of methods for
+% <b>ALL</b> the components. These are:
+% </html>
+
+%%
+% <html>
+%   <table>
+%   <tr><th>Method</th><th>Description</th></tr>
+%   <tr><td><i>displayInformation</i></td><td>Displays the different parameters of the component</td></tr>
+%   <tr><td><i>drawComponent</i></td> <td>Draws the component in a 3D plot</td></tr>
+%   <tr><td><i>computeModelParameters</i></td> <td>Computes the different parameters of the
+%       models (electric,thermal...) of the component</td></tr>
+%   <tr><td><i>setExcitations</i></td> <td>Sets the excitations of the components.  
+%   More information about excitations can be found <a  href="SetExcitations.html"> here </a> </td></tr>
+%   <tr><td><i>computeOutputData</i></td> <td>Computes the different output data (losses,
+%   temperatures...) of the components. These requires that the excitations
+%   were defined before</td></tr>
+%   </table>
+% </html>
+%
+
+%%
+% <html>
+% In the example:
+% </html>
+myInd.computeModelParameters;
+myInd.displayInformation;
+
+%%
+myInd.drawComponent;
+
+%%
+% <html>
+% </html>
+
+
+
+
+##### SOURCE END #####
+--></body></html>
